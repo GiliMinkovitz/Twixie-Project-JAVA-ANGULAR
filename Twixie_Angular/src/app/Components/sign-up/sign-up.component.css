@@ -1,0 +1,290 @@
+:host {
+    --twixie-yellow: #FFD600;
+    --twixie-black: #212121;
+    --white: #ffffff;
+    --input-bg: #f3f3f3;
+    --shadow-soft: 0 20px 40px rgba(0,0,0,0.1);
+
+    /* Dark mode variables */
+    --dark-bg: #1a1a1a;
+    --dark-secondary: #2d2d2d;
+    --dark-input: #3a3a3a;
+    --text-light: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-dark: #404040;
+}
+
+/* --- רקע חיצוני --- */
+.signup-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--input-bg);
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+:host(.dark-mode) .signup-wrapper {
+    background-color: var(--dark-bg);
+}
+
+/* דוגמה ברקע (עיגולים עדינים) כדי שלא יהיה "משעמם" */
+.bg-pattern {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(#FBC02D 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* --- הכרטיס המרכזי --- */
+.auth-card {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 450px; /* רוחב קלאסי של כרטיס הרשמה */
+    border-radius: 30px; /* פינות עגולות מאוד */
+    padding: 40px;
+    box-shadow: var(--shadow-soft); /* צל עמוק ורך */
+    position: relative;
+    z-index: 10;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+:host(.dark-mode) .auth-card {
+    background-color: var(--dark-secondary);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* --- כותרת הכרטיס --- */
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.mini-logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--twixie-yellow);
+    /* קונטור שחור לטקסט הצהוב כדי שייראה כמו מותג */
+    /* -webkit-text-stroke: 1px var(--twixie-black);  */
+    margin: 0;
+    letter-spacing: -1px;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--twixie-black);
+    margin: 10px 0 0 0;
+}
+
+:host(.dark-mode) .title {
+    color: var(--text-light);
+}
+
+/* --- תמונת פרופיל (כמו שאהבת) --- */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.avatar-wrapper {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+
+.avatar-img, .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 4px solid var(--white); /* מסגרת לבנה עבה */
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.avatar-placeholder {
+    background-color: var(--input-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #bdbdbd;
+}
+.avatar-placeholder svg { width: 50%; height: 50%; }
+
+:host(.dark-mode) .avatar-placeholder {
+    background-color: var(--dark-input);
+    color: #707070;
+}
+
+/* אייקון המצלמה */
+.camera-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: var(--twixie-black);
+    color: var(--white);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 3px solid var(--white);
+    transition: transform 0.2s;
+    cursor: pointer;
+}
+
+.avatar-wrapper:hover .camera-badge {
+    transform: scale(1.1);
+    background-color: var(--twixie-yellow);
+    color: var(--twixie-black);
+}
+
+input[type="file"] { display: none; }
+
+.avatar-text {
+    font-size: 0.9rem;
+    color: #757575;
+    font-weight: 500;
+    margin: 0;
+}
+
+:host(.dark-mode) .avatar-text {
+    color: var(--text-secondary);
+}
+
+/* --- שדות הטופס (אותו עיצוב) --- */
+.form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.8rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+    margin-left: 10px;
+    color: var(--twixie-black);
+}
+
+input, textarea {
+    width: 100%;
+    padding: 14px 20px;
+    border-radius: 20px; /* עגול יותר */
+    border: 2px solid transparent;
+    background-color: var(--input-bg);
+    font-size: 1rem;
+    font-family: inherit;
+    color: var(--twixie-black);
+    box-sizing: border-box;
+    transition: all 0.2s;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    background-color: var(--white);
+    border-color: var(--twixie-black);
+}
+
+textarea { resize: none; }
+
+/* שורת קוד אימות */
+.verify-row {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    white-space: nowrap;
+    color: var(--twixie-black);
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+/* --- כפתור הרשמה --- */
+.btn-submit {
+    margin-top: 30px;
+    width: 100%;
+    padding: 18px;
+    border-radius: 50px;
+    border: none;
+    background-color: var(--twixie-black);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background-color: #000;
+}
+
+.btn-submit:disabled {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* --- פוטר --- */
+.footer-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.footer-link p {
+    font-size: 0.95rem;
+    color: #757575;
+}
+
+.footer-link a {
+    color: var(--twixie-black);
+    font-weight: 800;
+    text-decoration: none;
+}
+.footer-link a:hover { text-decoration: underline; }
+
+/* --- אנימציית כניסה --- */
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* --- התאמה למובייל --- */
+@media (max-width: 500px) {
+    .signup-wrapper {
+        padding: 0;
+        background-color: var(--white); /* במובייל מבטלים את הרקע הצהוב לטובת מראה נקי */
+    }
+
+    .auth-card {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 20px;
+        height: 100vh;
+        max-width: 100%;
+    }
+
+    .bg-pattern { display: none; }
+}

@@ -1,0 +1,237 @@
+.root-response {
+  margin-top: 20px;
+}
+
+/* הקונטיינר הראשי */
+.response-content {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px; /* הקטנתי קצת את הרווח (היה 10px) */
+}
+
+
+
+/* הקונטיינר הראשי: מסדר את התמונה לצד התוכן */
+.response-content {
+  display: flex;
+  align-items: flex-start; /* יישור לחלק העליון */
+  gap: 10px; /* רווח בין התמונה לטקסט */
+}
+
+/* --- עמודת הטקסט (מימין לתמונה) --- */
+.comment-body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  flex: 1; /* לוקח את שאר המקום */
+}
+
+/* --- תמונת הפרופיל --- */
+.comment-avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid #e4e6eb;
+
+  /* שינוי: ביטלתי את ה-margin-top שהיה כאן קודם */
+  margin-top: 0;
+  cursor: pointer;
+}
+
+/* --- מידע משתמש (השם והתאריך) --- */
+.user-info {
+  /* שינוי: הופך את השורה לגמישה כדי למרכז את הטקסט מול התמונה */
+  display: flex;
+  align-items: center; /* ממרכז אנכית */
+  height: 24px; /* גובה זהה בדיוק לגובה התמונה */
+
+  margin: 0 0 2px 0; /* רווח קטנטן מתחת לשם לפני הבועה */
+  font-size: 12px;
+  color: #65676b;
+  line-height: 1; /* איפוס גובה שורה כדי שהפלקס יעבוד מדויק */
+}
+
+.user-info strong {
+  color: #050505;
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 4px; /* רווח קטן בין השם לתאריך */
+}
+
+.user-info strong:hover {
+  text-decoration: underline;
+}
+
+/* --- העוטף של הבועה והכפתורים --- */
+.bubble-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+/* בועת הטקסט */
+p.bubble {
+  background-color: #f0f2f5;
+  color: #050505;
+  padding: 8px 12px;
+  border-radius: 18px;
+  /* נותן לבועה "זנב" קטן בצד שמאל למעלה שיתאים לשיחה - אופציונלי */
+  border-top-left-radius: 4px;
+  font-size: 14px;
+  line-height: 1.4;
+  margin: 0;
+  width: fit-content;
+  word-wrap: break-word;
+}
+
+/* --- הכפתורים המרחפים --- */
+.action-buttons {
+  background-color: #ffffff;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  border-radius: 20px;
+  padding: 2px;
+  display: flex;
+
+  opacity: 0;
+  transform: translateX(-10px);
+  visibility: hidden;
+  transition: all 0.2s ease-out;
+}
+
+/* חשיפה בהובר */
+.bubble-wrapper:hover .action-buttons {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+/* עיצוב האייקונים */
+.action-buttons button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 8px;
+  border-radius: 50%;
+  color: #65676b;
+  font-size: 13px;
+  transition: background-color 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.action-buttons button:hover {
+  background-color: #f2f2f2;
+  color: #f59e0b;
+}
+
+.action-buttons button.delete-btn:hover {
+  background-color: #ffebeb;
+  color: #dc3545;
+}
+
+.children-list {
+  width: 100%;
+}
+
+
+
+
+/* --- עיצוב מצב "תגובה מחוקה" --- */
+
+/* 1. עמעום כללי של השורה */
+.deleted-mode {
+  opacity: 0.7; /* הופך את הכל לקצת שקוף */
+}
+
+/* 2. שינוי בועת הטקסט - מראה "ריק" יותר */
+.deleted-mode .bubble {
+  background-color: transparent; /* מבטל את הרקע האפור הרגיל */
+  border: 0.05px solid #e1e1e1; /* מסגרת מקווקוות עדינה */
+  color: #8a8d91; /* טקסט אפור */
+  font-style: italic; /* טקסט נטוי */
+  padding: 6px 10px; /* קצת פחות מרווח */
+}
+
+/* 3. טיפול בתמונת הפרופיל */
+.deleted-mode .comment-avatar {
+  filter: grayscale(100%); /* הופך את התמונה לשחור לבן */
+  opacity: 0.5;
+  cursor: default; /* מבטל את האייקון של היד */
+}
+
+/* 4. הסתרת שם המשתמש והתאריך (אופציונלי - אם רוצים להשאיר רק "Deleted") */
+.deleted-mode .user-info strong {
+  color: #8a8d91;
+  text-decoration: none;
+  font-weight: 400;
+  cursor: default;
+}
+
+/* 5. חשוב מאוד: הסתרת כפתורי הפעולה (Reply/Delete) */
+/* כדי שלא יוכלו להגיב או למחוק שוב תגובה מחוקה */
+.deleted-mode .action-buttons,
+.deleted-mode .bubble-wrapper:hover .action-buttons {
+  display: none !important;
+  visibility: hidden !important;
+}
+
+/* 6. ביטול אפשרות לחיצה על התגובה */
+.deleted-mode .bubble-wrapper {
+  pointer-events: none; /* מונע כל אינטראקציה עם הבועה */
+}
+
+/* === Dark Mode Styles === */
+:host(.dark-mode) .comment-avatar {
+  border-color: #444444;
+}
+
+:host(.dark-mode) .user-info {
+  color: #888888;
+}
+
+:host(.dark-mode) .user-info strong {
+  color: #ffffff;
+}
+
+:host(.dark-mode) p.bubble {
+  background-color: #2d2d2d;
+  color: #ffffff;
+}
+
+:host(.dark-mode) .action-buttons {
+  background-color: #1a1a1a;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+:host(.dark-mode) .action-buttons button {
+  color: #888888;
+}
+
+:host(.dark-mode) .action-buttons button:hover {
+  background-color: #333333;
+  color: #FFD600;
+}
+
+:host(.dark-mode) .action-buttons button.delete-btn:hover {
+  background-color: #3a1a1a;
+  color: #ff4757;
+}
+
+:host(.dark-mode) .deleted-mode {
+  opacity: 0.6;
+}
+
+:host(.dark-mode) .deleted-mode .bubble {
+  background-color: transparent;
+  border-color: #444444;
+  color: #666666;
+}
+
+:host(.dark-mode) .deleted-mode .comment-avatar {
+  filter: grayscale(100%);
+  opacity: 0.4;
+}

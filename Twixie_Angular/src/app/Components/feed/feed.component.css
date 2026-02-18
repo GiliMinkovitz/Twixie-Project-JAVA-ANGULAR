@@ -1,0 +1,571 @@
+/* --- משתנים גלובליים --- */
+:root {
+    /* הגדרות פריסה */
+    --header-height: 70px;
+    --sidebar-width: 300px;
+
+    /* צבעים כלליים - משתמש בגלובלי */
+    --primary-color: var(--text-primary);
+    --accent-color: #FFD600;
+    --bg-color: var(--background-primary);
+    --card-bg: var(--card-background);
+    --text-color: var(--text-primary);
+
+    /* צבעי מותג TWIXIE */
+    --twixie-yellow: #FFD600;
+    --twixie-black: #212121;
+}
+
+body {
+    background-color: var(--background-primary);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    margin: 0;
+}
+
+/* =========================================
+   1. Header & Layout
+   ========================================= */
+
+.main-header.fixed-top {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: var(--header-height);
+    background: var(--card-background);
+    z-index: 1000;
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    align-items: center;
+}
+
+.content-wrapper {
+    padding-top: calc(var(--header-height) + 20px);
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 40px;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+/* =========================================
+   2. Sidebar & Filters
+   ========================================= */
+
+.drawer-toggle-checkbox { display: none; }
+
+.sidebar-filters {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: var(--sidebar-width);
+    height: 100vh;
+    background: #fff;
+    z-index: 2000;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.1);
+    transition: right 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer-toggle-checkbox:checked ~ .sidebar-filters {
+    right: 0;
+}
+
+.sidebar-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #f8f9fa;
+}
+
+.sidebar-header h3 { margin: 0; font-size: 1.2rem; color: var(--primary-color); }
+
+.close-icon {
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: #636e72;
+    transition: 0.2s;
+}
+.close-icon:hover { color: var(--accent-color); transform: rotate(90deg); }
+
+.sidebar-content { padding: 25px; flex: 1; overflow-y: auto; }
+
+.filter-item { margin-bottom: 25px; }
+
+.filter-item label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: #636e72;
+}
+
+.fancy-select {
+    position: relative;
+    width: 100%;
+}
+
+.fancy-select select {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    color: var(--text-color);
+    background-color: #fff;
+    border: 2px solid #dfe6e9;
+    border-radius: 12px;
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.fancy-select select:hover { border-color: #b2bec3; }
+.fancy-select select:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 4px rgba(9, 132, 227, 0.1);
+}
+
+.fancy-select .custom-arrow {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b2bec3;
+    pointer-events: none;
+    font-size: 0.8rem;
+}
+
+.fancy-select select option {
+    padding: 15px;
+    background: #fff;
+    color: #333;
+    font-size: 1rem;
+}
+
+.sidebar-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+}
+
+.apply-btn {
+    display: block;
+    text-align: center;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.2s;
+}
+.apply-btn:hover { background: #000; }
+
+.backdrop-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 1500;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.3s;
+}
+.drawer-toggle-checkbox:checked ~ .backdrop-overlay { opacity: 1; pointer-events: auto; }
+
+/* =========================================
+   3. Actions Bar & Search
+   ========================================= */
+
+.actions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.search-bar-styled {
+    flex: 1;
+    position: relative;
+    max-width: 500px;
+    margin-top: 12px;
+}
+
+.search-bar-styled input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    background: var(--card-bg);
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.search-bar-styled input:focus {
+    outline: none;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.search-bar-styled .search-icon {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #b2bec3;
+}
+
+.filter-trigger {
+    background: #fff;
+    padding: 10px 20px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: 0.2s;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+.filter-trigger:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.08); }
+.filter-trigger .icon-circle { color: var(--accent-color); }
+
+
+/* =========================================
+   4. Twixie Post Cards
+   ========================================= */
+
+.posts-stream {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+    padding-bottom: 40px;
+}
+
+.modern-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.08);
+    cursor: pointer;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+    border: 1px solid rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    height: 100%;
+}
+
+.modern-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.15);
+    border-color: rgba(0,0,0,0.08);
+}
+
+/* --- אזור תמונה --- */
+.card-cover {
+    height: 200px;
+    position: relative;
+    background: #f0f0f0;
+    overflow: hidden;
+}
+
+.card-cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.modern-card:hover .card-cover img {
+    transform: scale(1.05);
+}
+
+.card-cover .no-img-bg {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3rem;
+    color: #e0e0e0;
+    background: #fafafa;
+}
+
+/* --- התיקון הקריטי לתגית --- */
+.floating-badge {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: auto;
+
+    /* התיקון: שימוש ב-background מלא עם צבע קשיח ו-important */
+    background: #FFD600 !important;
+    color: #212121 !important;
+
+    /* וידוא שאין שקיפות */
+    opacity: 1 !important;
+
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+    z-index: 100; /* זד אינדקס גבוה */
+}
+
+/* --- תוכן הכרטיס --- */
+.card-details {
+    padding: 24px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.post-headline {
+    order: 1;
+    margin: 0 0 12px 0;
+    font-size: 1.3rem;
+    font-weight: 800;
+    color: var(--twixie-black);
+    line-height: 1.25;
+    letter-spacing: -0.5px;
+}
+
+.post-snippet {
+    order: 2;
+    font-size: 0.95rem;
+    color: #636e72;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.card-action-link {
+    order: 3;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--twixie-black);
+    text-decoration: underline;
+    margin-bottom: 20px;
+    align-self: flex-start;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.card-action-link i { font-size: 0.8rem; transition: transform 0.2s; }
+.modern-card:hover .card-action-link i { transform: translateX(4px); }
+
+.author-info {
+    order: 10;
+    margin-top: auto;
+    padding-top: 15px;
+    border-top: 1px solid #f1f2f6;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.avatar-small {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 12px;
+    border: 2px solid #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.info-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    line-height: 1.2;
+}
+
+.author-name {
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--twixie-black);
+}
+
+.post-time {
+    font-size: 0.75rem;
+    color: #b2bec3;
+    font-weight: 500;
+}
+
+.empty-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px;
+    color: #b2bec3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: #fff;
+    border-radius: 16px;
+    border: 2px dashed #dfe6e9;
+}
+.empty-state i { font-size: 3rem; opacity: 0.5; }
+
+/* Loading State */
+.loading-state {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 60px;
+    color: #b2bec3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    background: #fff;
+    border-radius: 16px;
+    border: 2px dashed #dfe6e9;
+}
+
+.loading-state p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #e0e0e0;
+    border-top-color: var(--twixie-yellow);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* === Dark Mode Styles === */
+:host(.dark-mode) {
+    --twixie-yellow: #FFD600;
+    --twixie-black: #212121;
+}
+
+:host(.dark-mode) .sidebar-filters {
+    background: #252525;
+    color: #e0e0e0;
+}
+
+:host(.dark-mode) .sidebar-header {
+    background: #1a1a1a;
+    border-bottom-color: #333333;
+    color: #e0e0e0;
+}
+
+:host(.dark-mode) .sidebar-header h3 {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .close-icon {
+    color: #b0b0b0;
+}
+
+:host(.dark-mode) .filter-item label {
+    color: #b0b0b0;
+}
+
+:host(.dark-mode) .fancy-select select {
+    background-color: #252525;
+    color: #ffffff;
+    border-color: #444444;
+}
+
+:host(.dark-mode) .fancy-select select option {
+    background: #1a1a1a;
+    color: #ffffff;
+}
+
+:host(.dark-mode) .sidebar-footer {
+    background: #252525;
+    border-top-color: #333333;
+}
+
+:host(.dark-mode) .apply-btn {
+    background: var(--twixie-yellow);
+    color: var(--twixie-black);
+}
+
+:host(.dark-mode) .search-bar-styled input {
+    background: #252525;
+    border-color: #444444;
+    color: #ffffff;
+}
+
+:host(.dark-mode) .search-bar-styled .search-icon {
+    color: #b0b0b0;
+}
+
+:host(.dark-mode) .filter-trigger {
+    background: #252525;
+    border-color: #444444;
+    color: #ffffff;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+:host(.dark-mode) .modern-card {
+    background: #252525;
+    border-color: #333333;
+    box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+}
+
+:host(.dark-mode) .modern-card:hover {
+    background: #2d2d2d;
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.6);
+}
+
+:host(.dark-mode) .card-cover .no-img-bg {
+    background: #1a1a1a;
+    color: #444444;
+}
+
+:host(.dark-mode) .post-headline {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .post-snippet {
+    color: #b0b0b0;
+}
+
+:host(.dark-mode) .card-action-link {
+    color: var(--twixie-yellow);
+}
+
+:host(.dark-mode) .author-name {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .post-time {
+    color: #888888;
+}
+
+:host(.dark-mode) .author-info {
+    border-top-color: #333333;
+}
+
+:host(.dark-mode) .empty-state {
+    background: #252525;
+    border-color: #333333;
+    color: #b0b0b0;
+}
+
+:host(.dark-mode) .loading-state {
+    background: #252525;
+    border-color: #333333;
+    color: #b0b0b0;
+}

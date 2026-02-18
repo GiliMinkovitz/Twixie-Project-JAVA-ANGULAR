@@ -1,0 +1,28 @@
+
+<div class="dialog-container">
+  
+  <!-- אייקון אזהרה ויזואלי -->
+  <div class="icon-wrapper">
+    <i class="fas fa-exclamation-triangle"></i>
+  </div>
+
+  <!-- תוכן ההודעה -->
+  <div class="content">
+    <h3 class="title">Are you sure?</h3>
+    <p class="message">{{ data.message }}</p>
+  </div>
+
+  <!-- כפתורים -->
+  <div class="actions">
+    <!-- כפתור ביטול - אפור ורגוע -->
+    <button class="btn-cancel" (click)="onCancel()">
+      Cancel
+    </button>
+    
+    <!-- כפתור אישור - אדום ובולט -->
+    <button class="btn-confirm" (click)="onConfirm()">
+      Yes, I'm sure
+    </button>
+  </div>
+
+</div>

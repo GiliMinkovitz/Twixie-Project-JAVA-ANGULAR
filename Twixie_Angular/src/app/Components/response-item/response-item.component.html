@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+<div class="response-container" [class.root-response]="depth === 0">
+
+  <!-- הוספתי display-flex ב-CSS כדי שהתמונה והטקסט יהיו אחד ליד השני -->
+  <div class="response-content" [style.padding-left.px]="depth * 25" [class.deleted-mode]="response.deleted">
+
+    <!-- 1. תמונת הפרופיל -->
+    <img [src]="'data:image/png;base64,' + response.responser.picture" alt="User" class="comment-avatar">
+
+    <!-- 2. עמודת התוכן (שם + בועה) -->
+    <div class="comment-body">
+
+      <p class="user-info">
+        <strong>{{ response.responser.userName }}</strong> • {{ response.dateCreated| timeAgo }}
+      </p>
+
+      <div class="bubble-wrapper">
+        <p class="bubble">{{ response.content }}</p>
+        <div class="action-buttons">
+          <button (click)="replyTo()" title="Reply">
+            <i class="fa-solid fa-reply"></i>
+          </button>
+          <button (click)="deleteResponse()" class="delete-btn" title="Delete">
+            <i class="fa-solid fa-trash-can"></i>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- סוף עמודת התוכן -->
+
+  </div>
+
+  @if(response.children && response.children.length > 0) {
+  <div class="children-list">
+    @for(child of response.children; track child.responseId) {
+    <app-response-item [response]="child" [depth]="depth + 1" (responseDeleted)="notifyDelete()"
+      (responseAdded)="notifyAdd()"> </app-response-item>
+    }
+  </div>
+  }
+
+</div>

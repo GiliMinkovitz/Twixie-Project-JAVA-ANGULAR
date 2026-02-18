@@ -1,0 +1,102 @@
+/* פונט מודרני */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap');
+
+:host {
+  display: block;
+  font-family: 'Inter', sans-serif;
+}
+
+.dialog-container {
+  background: #ffffff;
+  padding: 32px 24px 24px; /* ריווח נדיב */
+  border-radius: 16px; /* פינות עגולות כמו באייפון/טוויטר */
+  text-align: center;
+  max-width: 400px;
+  width: 100%;
+  box-sizing: border-box;
+  /* אם הדיאלוג שלך לא מגיע עם צל מהספרייה, תבטל את ההערה הבאה: */
+  /* box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); */
+}
+
+/* --- האייקון --- */
+.icon-wrapper {
+  margin: 0 auto 20px auto;
+  width: 50px;
+  height: 50px;
+  background-color: #fee2e2; /* אדום בהיר מאוד */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.icon-wrapper i {
+  color: #dc2626; /* אדום אזהרה */
+  font-size: 24px;
+}
+
+/* --- הטקסט --- */
+.content {
+  margin-bottom: 30px;
+}
+
+.title {
+  margin: 0 0 10px 0;
+  font-size: 20px;
+  font-weight: 600;
+  color: #111827; /* כמעט שחור */
+}
+
+.message {
+  margin: 0;
+  font-size: 15px;
+  color: #6b7280; /* אפור נעים לקריאה */
+  line-height: 1.5;
+}
+
+/* --- הכפתורים --- */
+.actions {
+  display: flex;
+  gap: 12px; /* רווח בין הכפתורים */
+  justify-content: center;
+}
+
+button {
+  flex: 1; /* הכפתורים יתפסו רווח שווה */
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+/* כפתור ביטול */
+.btn-cancel {
+  background-color: #ffffff;
+  color: #374151;
+  border: 1px solid #d1d5db; /* מסגרת אפורה עדינה */
+}
+
+.btn-cancel:hover {
+  background-color: #f9fafb;
+  border-color: #9ca3af;
+}
+
+/* כפתור אישור (פעולה הרסנית) */
+.btn-confirm {
+  background-color: #dc2626; /* אדום חזק */
+  color: #ffffff;
+  box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.2); /* צל אדמדם עדין */
+}
+
+.btn-confirm:hover {
+  background-color: #b91c1c; /* אדום כהה יותר בהובר */
+  transform: translateY(-1px);
+}
+
+.btn-confirm:active {
+  transform: translateY(0);
+}

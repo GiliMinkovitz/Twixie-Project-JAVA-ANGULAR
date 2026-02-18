@@ -1,0 +1,240 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f0f2f5;
+  color: #1c1e21;
+  margin: 0;
+  padding: 20px;
+}
+
+.post-wrapper {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  overflow: visible; /* חייב להיות visible כדי שהפופ-אפ יוכל לצאת מהגבולות */
+  position: relative;
+}
+
+
+.post-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* עיגול מושלם */
+  object-fit: cover;
+  cursor: pointer;
+  border: 1px solid #dadde1;
+}
+
+/* --- User Details Hover Card (כמו ב-Gmail) --- */
+.user-hover-card {
+  visibility: hidden; /* מוסתר כברירת מחדל */
+  opacity: 0;
+  position: absolute;
+  top: 100%; /* מתחיל בדיוק מתחת לתמונה */
+  left: 0;
+  background-color: #fff;
+  min-width: 280px; /* רוחב מינימלי לכרטיס המידע */
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* צל חזק יותר לפופ-אפ */
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  z-index: 1000; /* שיהיה מעל הכל */
+  transition: opacity 0.2s ease-in-out, visibility 0.2s;
+  margin-top: 10px; /* רווח קטן מהתמונה */
+}
+
+/* המשולש הקטן מעל הכרטיס (אופציונלי - ליופי) */
+.user-hover-card::before {
+  content: "";
+  position: absolute;
+  top: -6px;
+  left: 15px;
+  width: 12px;
+  height: 12px;
+  background: white;
+  transform: rotate(45deg);
+  border-left: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+}
+
+/* הצגת הפופ-אפ בעת מעבר עכבר */
+.profile-section:hover .user-hover-card {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* --- Header Layout --- */
+.post-header {
+  display: flex;
+  align-items: flex-start; /* שינוי חשוב: מיישר את התמונה לחלק העליון במקרה שהכותרת גולשת לשתי שורות */
+  padding: 16px; /* רווח פנימי קצת יותר גדול */
+  position: relative;
+}
+
+/* --- Profile Picture Section --- */
+.profile-section {
+  position: relative;
+  margin-right: 14px; /* טיפה יותר רווח בין התמונה לטקסט */
+  margin-top: 4px; /* איזון מול הכותרת הגדולה */
+}
+
+/* --- Header Text Wrapper --- */
+.header-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column; /* מוודא שהכותרת והפרטים אחד מתחת לשני */
+  justify-content: center;
+}
+
+/* --- הכותרת הדומיננטית --- */
+.topic-name {
+  margin: 0 0 6px 0; /* הוספתי רווח תחתון כדי להפריד מהשם */
+  font-size: 22px; /* הגדלה משמעותית (היה 16px) */
+  font-weight: 700; /* מודגש יותר */
+  color: #050505;
+  line-height: 1.2;
+  letter-spacing: -0.5px; /* צמצום רווחים עדין למראה כותרתי מודרני */
+}
+
+/* --- שורת המידע (שם ותאריך) --- */
+.header-text p {
+  margin: 0;
+  font-size: 13px;
+  color: #65676b; /* אפור שקט יותר */
+  line-height: 1.4;
+  display: flex;
+  align-items: center;
+}
+
+/* הדגשת שם המפרסם בתוך השורה האפורה */
+.author-name {
+  font-weight: 600;
+  color: #1c1e21; /* שם המשתמש נשאר כהה וקריא */
+  cursor: pointer;
+  margin-right: 4px;
+}
+
+.author-name:hover {
+  text-decoration: underline;
+}
+
+/* עיצוב לתאריך */
+.post-date {
+  color: #65676b;
+  font-weight: 400;
+}
+
+.author-name:hover {
+  text-decoration: underline;
+}
+
+/* --- Post Content --- */
+.post-content {
+  padding: 4px 16px 16px 16px;
+}
+
+.post-content p {
+  font-size: 15px;
+  color: #050505;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+/* תמונת הפוסט הראשית */
+.post-main-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 4px; /* רק פינות מעוגלות, לא עיגול */
+  border: 1px solid #e1e3e8;
+  object-fit: cover;
+}
+
+/* --- Actions Bar --- */
+.post-actions {
+  display: flex;
+  border-top: 1px solid #f0f2f5;
+  padding: 4px;
+  margin: 0 12px;
+}
+
+.post-actions button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #65676b;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 14px;
+}
+
+.post-actions button:hover {
+  background-color: #f2f2f2;
+}
+
+.loading {
+  text-align: center;
+  padding: 50px;
+  color: #888;
+}
+
+/* === Dark Mode Styles === */
+:host(.dark-mode) {
+  background: transparent;
+}
+
+:host(.dark-mode) .post-wrapper {
+  background-color: #1a1a1a;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+:host(.dark-mode) .topic-name {
+  color: #ffffff;
+}
+
+:host(.dark-mode) .author-name {
+  color: #e0e0e0;
+}
+
+:host(.dark-mode) .post-date {
+  color: #888888;
+}
+
+:host(.dark-mode) .post-content h3 {
+  color: #ffffff;
+}
+
+:host(.dark-mode) .post-content p {
+  color: #d0d0d0;
+}
+
+:host(.dark-mode) .post-actions {
+  border-top-color: #333333;
+  background: #1a1a1a;
+}
+
+:host(.dark-mode) .post-actions button {
+  color: #b0b0b0;
+}
+
+:host(.dark-mode) .post-actions button:hover {
+  background-color: #2d2d2d;
+}
+
+:host(.dark-mode) .user-hover-card {
+  background-color: #1e1e1e;
+  border-color: #333333;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+}
+
+:host(.dark-mode) .user-hover-card::before {
+  background: #1e1e1e;
+  border-left-color: #333333;
+  border-top-color: #333333;
+}

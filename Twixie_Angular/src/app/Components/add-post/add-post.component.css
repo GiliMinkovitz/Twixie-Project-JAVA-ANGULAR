@@ -1,0 +1,392 @@
+:host {
+    /* צבעים */
+    --twixie-yellow: #FFD600;
+    --twixie-black: #212121;
+    --gray-bg: #F5F5F5;
+    --white: #ffffff;
+    --text-gray: #757575;
+    --border-color: #E0E0E0;
+
+    /* הגדרות טקסט קריטיות ליישור ה-AI */
+    --editor-font-family: 'JetBrains Mono', monospace;
+    --editor-font-size: 15px;
+    --editor-line-height: 1.6;
+    --editor-padding: 16px;
+}
+
+.create-post-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    background-color: var(--gray-bg);
+    min-height: 100vh;
+}
+
+.composer-card {
+    background: var(--white);
+    width: 100%;
+    max-width: 650px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- כותרת הכרטיס --- */
+.card-header {
+    padding: 24px 30px 10px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-header h2 {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--twixie-black);
+    margin: 0;
+}
+
+/* פס קישוט צהוב */
+.header-decoration {
+    height: 6px;
+    width: 60px;
+    background-color: var(--twixie-yellow);
+    border-radius: 10px;
+}
+
+/* --- חלק עליון (קטגוריה + כותרת) --- */
+.top-section {
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* כפתור קטגוריה מעוצב */
+.category-pill-wrapper {
+    position: relative;
+    width: fit-content;
+}
+
+.category-select {
+    appearance: none;
+    background-color: var(--twixie-black);
+    color: var(--twixie-yellow);
+    font-family: var(--editor-font-family);
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 8px 35px 8px 16px;
+    border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.category-select:hover {
+    transform: scale(1.05);
+}
+
+.category-select:focus {
+    outline: 2px solid var(--twixie-yellow);
+}
+
+.arrow-icon {
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--twixie-yellow);
+    font-size: 10px;
+    pointer-events: none;
+}
+
+.title-input {
+    width: 100%;
+    border: none;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: var(--twixie-black);
+    outline: none;
+    padding: 5px 0;
+    background: transparent;
+}
+
+.title-input::placeholder {
+    color: #e0e0e0;
+}
+
+/* --- אזור העורך (AI Magic) --- */
+.editor-container {
+    padding: 0 30px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.editor-wrapper {
+    position: relative;
+    min-height: 150px;
+    border: 2px solid transparent;
+    border-radius: 16px;
+    background-color: #FAFAFA; /* רקע אפור בהיר מאוד לאזור הכתיבה */
+    transition: all 0.2s;
+}
+
+.editor-wrapper:focus-within {
+    background-color: var(--white);
+    border-color: var(--twixie-yellow);
+    box-shadow: 0 0 0 4px rgba(255, 214, 0, 0.15);
+}
+
+/* הגדרות משותפות לשכבה הקדמית והאחורית */
+.content-textarea,
+.backdrop {
+    width: 100%;
+    min-height: 150px;
+    padding: var(--editor-padding);
+    font-family: var(--editor-font-family);
+    font-size: var(--editor-font-size);
+    line-height: var(--editor-line-height);
+    box-sizing: border-box;
+    border: none;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    margin: 0;
+}
+
+/* השכבה הקדמית - מה שהמשתמש מקליד */
+.content-textarea {
+    position: relative;
+    z-index: 2; /* מעל הרקע */
+    background: transparent;
+    color: var(--twixie-black); /* טקסט שחור רגיל! */
+    resize: none;
+    outline: none;
+    overflow: hidden; /* גובה אוטומטי אם יש לך סקריפט לזה, אחרת שים סרגל גלילה */
+}
+
+.content-textarea::placeholder {
+    color: #bdbdbd;
+}
+
+/* השכבה האחורית - ה-AI */
+.backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1; /* מאחור */
+    color: transparent; /* ברירת מחדל שקוף */
+    pointer-events: none; /* שלא יפריע להקלקה */
+}
+
+/* הטקסט של המשתמש ברקע - חייב להיות בלתי נראה אבל לתפוס מקום */
+.user-text-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* הצעת ה-AI */
+.ai-suggestion {
+    color: #9E9E9E; /* צבע אפור להצעה */
+    visibility: visible;
+}
+
+/* --- Loader & Hints --- */
+.ai-loader {
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+    z-index: 3;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 4px 10px;
+    border-radius: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.ai-loader i { color: var(--twixie-yellow); }
+.ai-loader span { font-size: 0.75rem; font-weight: 600; color: var(--text-gray); }
+
+.tab-hint {
+    text-align: right;
+    font-size: 0.75rem;
+    color: var(--text-gray);
+    margin-top: 6px;
+    opacity: 0.8;
+}
+
+.key {
+    background: #eee;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.7rem;
+    border: 1px solid #ddd;
+}
+
+/* --- תצוגת תמונה --- */
+.media-preview {
+    margin: 0 30px 20px 30px;
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.media-preview img {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    display: block;
+}
+
+.remove-media-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.2s;
+}
+.remove-media-btn:hover { background: rgba(0,0,0,0.8); }
+
+/* --- סרגל תחתון --- */
+.action-bar {
+    padding: 15px 30px 25px 30px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    margin-top: auto;
+}
+
+.tool-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: var(--twixie-black);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.tool-btn i { font-size: 1.1rem; color: var(--twixie-black); }
+.tool-btn:hover { background-color: var(--gray-bg); }
+
+.publish-btn {
+    background-color: var(--twixie-black);
+    color: var(--twixie-yellow);
+    border: none;
+    padding: 12px 28px;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.2s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.publish-btn:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    background-color: #000;
+}
+
+.publish-btn:disabled {
+    background-color: #E0E0E0;
+    color: #BDBDBD;
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* === Dark Mode Styles === */
+:host(.dark-mode) .create-post-wrapper {
+    background-color: #121212;
+}
+
+:host(.dark-mode) .composer-card {
+    background: #1a1a1a;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+:host(.dark-mode) .card-header h2 {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .category-select {
+    background-color: #252525;
+    color: #FFD600;
+}
+
+:host(.dark-mode) .title-input {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .title-input::placeholder {
+    color: #666666;
+}
+
+:host(.dark-mode) .editor-wrapper {
+    background-color: #252525;
+    border-color: #333333;
+}
+
+:host(.dark-mode) .content-textarea {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .content-textarea::placeholder {
+    color: #666666;
+}
+
+:host(.dark-mode) .ai-loader span {
+    color: #b0b0b0;
+}
+
+:host(.dark-mode) .media-preview {
+    border-color: #333333;
+}
+
+:host(.dark-mode) .action-bar {
+    background: #1a1a1a;
+    border-top-color: #333333;
+}
+
+:host(.dark-mode) .tool-btn {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .tool-btn:hover {
+    background-color: #252525;
+}
+
+:host(.dark-mode) .publish-btn {
+    background-color: #FFD600;
+    color: #212121;
+}
+
+:host(.dark-mode) .publish-btn:disabled {
+    background-color: #444444;
+    color: #888888;
+}

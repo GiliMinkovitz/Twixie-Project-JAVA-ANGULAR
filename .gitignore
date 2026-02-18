@@ -1,0 +1,18 @@
+# ===== Java / Spring Boot =====
+target/
+*.class
+*.jar
+*.war
+*.log
+*.iml
+.idea/
+.vscode/
+
+# ===== Node / Angular =====
+node_modules/
+dist/
+npm-debug.log*
+.env
+
+# ===== כללי =====
+.DS_Store

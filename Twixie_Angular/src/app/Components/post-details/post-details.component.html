@@ -1,0 +1,45 @@
+<app-menu-bar />
+@if(post){
+<section class="post-wrapper">
+
+  <div class="post-header">
+
+    <div class="profile-section">
+      <img [src]="'data:image/png;base64,' + post.poster.picture" alt="Profile" class="post-avatar" />
+
+      <!-- הפופ-אפ שנפתח -->
+      <div class="user-hover-card">
+        <app-user-details [user]="this.post.poster"></app-user-details>
+      </div>
+    </div>
+
+    <!-- 2. קונטיינר לטקסט (כותרת ותאריך) -->
+    <div class="header-text">
+      <h2 class="topic-name">{{ post.topicName }}</h2>
+      <p>
+        <span class="author-name">{{post.poster.userName}}</span>
+        <span class="post-date"> •{{ post.lastUpdated | timeAgo }}</span>
+      </p>
+    </div>
+
+  </div>
+
+  <article class="post-content">
+    <h3>{{ post.title }}</h3>
+
+    <p>{{ post.content }}</p>
+    <!-- התמונה הראשית של הפוסט -->
+    <img [src]="'data:image/png;base64,' + post.imagePath" alt="Post content" class="post-main-image" />
+  </article>
+
+  <div class="post-actions">
+    <button (click)="likeOrDislikePost(true)">Likes 👍 {{ likes }}</button>
+    <button (click)="likeOrDislikePost(false)">Dislikes 👎 {{ dislikes }}</button>
+  </div>
+
+  <app-response-list [postId]="post.postId"></app-response-list>
+
+</section>
+} @else {
+<div class="loading">Loading post details...</div>
+}

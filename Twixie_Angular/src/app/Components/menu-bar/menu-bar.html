@@ -1,0 +1,47 @@
+<nav class="navbar">
+
+  <!-- חלק שמאלי: לוגו, צור קשר ופיד -->
+  <div class="nav-left">
+    <div class="logo">Tw<span class="highlight">ixie</span></div>
+    
+    <!-- כפתור Contact Us המעודכן -->
+    <a href="https://mail.google.com/mail/?view=cm&fs=1&to=twixiecommunity@gmail.com" target="_blank" class="contact-btn" title="Send us an email">
+      <i class="fa-solid fa-envelope"></i>
+      <span class="link-text">Contact Us</span>
+    </a>
+
+    <a routerLink="/feed" routerLinkActive="active-link" class="nav-link" title="Feed">
+      <i class="fa-solid fa-house"></i>
+      <span class="link-text">Feed</span>
+    </a>
+  </div>
+
+  <!-- חלק ימני: פעולות ופרופיל -->
+  <div class="nav-right">
+
+    <!-- כפתור הוספת פוסט - בולט ומרכזי -->
+    <a routerLink="/add-post" routerLinkActive="active-link" class="add-post-btn">
+      <i class="fa-solid fa-plus"></i>
+      <span>Create</span>
+    </a>
+
+    <!-- אייקונים של הגדרות ויציאה -->
+    <div class="action-icons">
+      <button (click)="goToSettings()" title="Settings" class="icon-btn">
+        <i class="fa-solid fa-gear"></i>
+      </button>
+
+      <button (click)="signOut()" title="Sign Out" class="icon-btn logout">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </button>
+    </div>
+
+    <!-- אזור הפרופיל (לחיץ) -->
+    <div class="user-profile" routerLink="/profile" routerLinkActive="active-profile">
+      <span class="user-name">{{currentUser.userName}}</span>
+      <img [src]="'data:image/jpeg;base64,' + currentUser.picture" alt="Profile" />
+    </div>
+
+  </div>
+
+</nav>

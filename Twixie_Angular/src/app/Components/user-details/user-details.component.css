@@ -1,0 +1,89 @@
+/* הגדרות כלליות לקומפוננטה */
+:host {
+  display: block;
+  text-align: center; /* מרכוז התוכן בכרטיס */
+  font-family: 'Poppins', sans-serif;
+  color: #1c1e21;
+}
+
+/* הסתרת הכותרת "Profile" */
+h2 {
+  display: none;
+}
+
+/* עיצוב התמונה */
+img {
+  width: 80px !important;
+  height: 80px !important;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  margin-bottom: 12px;
+  margin-top: -30px;
+  background-color: #fff;
+}
+
+/* עיצוב הטקסטים */
+div {
+  margin-bottom: 6px;
+}
+
+h3 {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.4;
+  color: #050505;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 100%;
+}
+
+/* הפיכת הביוגרפיה לטקסט קטן ואפור */
+div:nth-of-type(2) h3 {
+  font-size: 13px;
+  color: #65676b;
+  font-weight: 400;
+  white-space: normal;
+}
+
+/* עיצוב הכפתורים */
+button {
+  width: 100%;
+  padding: 8px 0;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  margin-top: 12px;
+  transition: background-color 0.2s;
+}
+
+/* --- השינוי לצבעי המותג (זהב) --- */
+
+/* כפתור "Follow" - ברירת מחדל */
+button:not(:hover) {
+    background-color: #f59e0b; /* צבע זהב/ענבר במקום כחול */
+    color: white;
+}
+
+/* כפתור בהובר (כשעוברים עם העכבר) */
+button:hover {
+  background-color: #d97706; /* גוון זהב כהה/כתמתם יותר */
+}
+
+/*
+   הערה: אם יש לך כפתור Unfollow שאתה רוצה שיהיה אפור,
+   תוסיף לו ב-HTML את הקלאס class="unfollow-btn"
+   ותוסיף את ה-CSS הזה:
+*/
+button.unfollow-btn {
+  background-color: #e4e6eb !important;
+  color: #050505 !important;
+}
+button.unfollow-btn:hover {
+  background-color: #d8dadf !important;
+}

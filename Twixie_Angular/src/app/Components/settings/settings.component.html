@@ -1,0 +1,120 @@
+<app-menu-bar />
+<div class="settings-container">
+  <h2>Settings</h2>
+
+  <!-- Loading State -->
+   @if(loading){
+<div class="loading">
+    <div class="spinner"></div>
+    <p>Loading settings...</p>
+  </div>
+   }
+   @if(!loading && settings) {
+  <!-- Settings Form -->
+  <div class="settings-form">
+
+    <!-- Dark Mode Setting -->
+    <div class="setting-item">
+      <label class="setting-label">
+        <input
+          type="checkbox"
+          [(ngModel)]="settings.darkModeEnabled"
+          (change)="onSettingChange()"
+          class="setting-checkbox"
+        />
+        <span class="setting-text">Dark mode</span>
+        <span class="setting-icon">{{ settings.darkModeEnabled ? '🌙' : '☀️' }}</span>
+      </label>
+      <p class="setting-description">
+        Enable dark mode for a more comfortable nighttime experience.
+      </p>
+    </div>
+
+    <!-- Font Size Setting -->
+    <div class="setting-item">
+      <label class="setting-label">
+        <span class="setting-text">Font Size</span>
+        <span class="setting-icon">📏</span>
+      </label>
+      <select
+        [(ngModel)]="settings.fontSize"
+        (change)="onSettingChange()"
+        class="setting-select"
+      >
+        <option value="small">small (14px)</option>
+        <option value="medium">medium (16px)</option>
+        <option value="large">large (18px)</option>
+        <option value="x-large">huge (20px)</option>
+      </select>
+      <p class="setting-description">
+        Choose your preferred text size for comfortable reading
+      </p>
+    </div>
+
+    <!-- Autocomplete Setting -->
+    <div class="setting-item">
+      <label class="setting-label">
+        <input
+          type="checkbox"
+          [(ngModel)]="settings.autocompleteEnabled"
+          (change)="onSettingChange()"
+          class="setting-checkbox"
+        />
+        <span class="setting-text">Auto-Complete</span>
+        <span class="setting-icon">✍️</span>
+      </label>
+      <p class="setting-description">
+        Enable autocomplete in text fields to save time.
+      </p>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="button-container">
+      <button
+        (click)="saveSettings()"
+        [disabled]="saving || !hasChanges"
+        class="btn btn-save"
+        [class.btn-disabled]="saving || !hasChanges"
+      >
+      @if(!saving){
+        <span>💾 Save Changes</span>
+      }
+      @else {
+        <span class="saving-text">
+          <span class="spinner-small"></span>
+          Saving...
+        </span>
+      }
+      </button>
+
+      <button
+        (click)="resetToDefaults()"
+        class="btn btn-reset"
+        [disabled]="saving"
+      >
+ 🔄 Reset to default settings
+      </button>
+    </div>
+
+    <!-- Success Message -->
+     @if(saveSuccess){
+    <div class="message message-success">
+      <span>Settings saved successfully!</span>
+      <span class="message-icon">✅</span>
+    </div>
+     }
+
+    <!-- Changes Indicator -->
+     @if(hasChanges && !saveSuccess){
+    <div  class="changes-indicator">
+      <span class="indicator-icon">⚠️</span>
+      <span>You have unsaved changes.</span>
+    </div>
+     }
+
+  </div>
+   }
+
+
+
+</div>

@@ -1,0 +1,123 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+<app-menu-bar />
+
+<div class="edit-wrapper">
+
+  @if (!post) {
+    <!-- Loading State -->
+    <div class="loading-state">
+      <div class="spinner"></div>
+      <p>Loading post...</p>
+    </div>
+  } @else {
+
+    <div class="edit-card">
+      
+      <!-- Header -->
+      <div class="card-header">
+        <div class="header-text">
+            <h1>Edit Post</h1>
+            <div class="yellow-dash"></div>
+        </div>
+        <div class="id-badge">
+            <span class="hash">#</span>{{ post.postId }}
+        </div>
+      </div>
+
+      <form>
+        <div class="card-body">
+            
+            <!-- Content Section -->
+            <div class="input-group">
+                <label class="section-label">Content</label>
+                <div class="textarea-container">
+                    <textarea
+                        [formControl]="form.controls.content"
+                        rows="8"
+                        placeholder="What's on your mind?"></textarea>
+                </div>
+            </div>
+
+            <!-- Image Section -->
+            <div class="input-group">
+                <label class="section-label">Cover Image</label>
+
+                <div class="media-area">
+                    
+                    <!-- תצוגת תמונה (קיימת או חדשה) -->
+                    @if (previewUrl || post.imagePath) {
+                        <div class="image-preview-box">
+                            
+                            <!-- התמונה עצמה - ממלאת את כל השטח -->
+                            @if (previewUrl) {
+                                <img [src]="previewUrl" alt="New Preview" class="preview-img" />
+                                <div class="status-pill new">New Upload</div>
+                            } @else {
+                                <img [src]="'data:image/jpeg;base64,' + post.imagePath" alt="Current Image" class="preview-img" />
+                                <div class="status-pill current">Current</div>
+                            }
+
+                            <!-- כפתור עריכה צף (FAB) בתוך התמונה -->
+                            <label for="fileUpload" class="edit-fab">
+                                <i class="fa-solid fa-camera"></i>
+                                <span>Change Photo</span>
+                            </label>
+                            
+                        </div>
+                    } @else {
+                        <!-- מצב אין תמונה -->
+                        <div class="empty-upload-state">
+                            <div class="icon-circle">
+                                <i class="fa-regular fa-image"></i>
+                            </div>
+                            <h3>Add Cover Image</h3>
+                            <p>Visuals make posts 10x more engaging.</p>
+                            <label for="fileUpload" class="upload-btn-outline">
+                                Browse Files
+                            </label>
+                        </div>
+                    }
+
+                    <!-- אינפוט מוסתר -->
+                    <input
+                        type="file"
+                        id="fileUpload"
+                        class="hidden-input"
+                        accept="image/*"
+                        (change)="onFileSelected($event)"
+                    />
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Actions -->
+        <div class="card-footer">
+            
+            <div class="footer-left">
+                @if (canSave) {
+                    <div class="unsaved-warning">
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <span>Unsaved Changes</span>
+                    </div>
+                }
+            </div>
+
+            <div class="footer-right">
+                <button type="button" (click)="router.navigate(['/my-posts'])" class="btn-cancel">
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    (click)="save()"
+                    [disabled]="!canSave"
+                    class="btn-save">
+                    Save Changes
+                </button>
+            </div>
+        </div>
+
+      </form>
+    </div>
+  }
+</div>

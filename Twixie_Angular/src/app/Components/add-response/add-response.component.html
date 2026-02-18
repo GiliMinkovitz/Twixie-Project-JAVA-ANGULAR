@@ -1,0 +1,22 @@
+
+<div class="add-post-container">
+    <!-- הטופס עצמו -->
+    <form [formGroup]="addForm" (ngSubmit)="saveResponse()" class="response-form">
+
+        <div class="input-area">
+            <!-- אייקון קטן של המשתמש (אופציונלי - נראה טוב) -->
+            <div class="user-icon">
+                <i class="fa-solid fa-pen"></i>
+            </div>
+
+            <!-- שדה הטקסט -->
+            <textarea formControlName="content" placeholder="Write a reply..." rows="1"></textarea>
+        </div>
+
+        <!-- כפתור השליחה (מוסתר עד שלוחצים על הטקסט) -->
+        <div class="actions">
+            <button type="submit">Reply</button>
+        </div>
+
+    </form>
+</div>

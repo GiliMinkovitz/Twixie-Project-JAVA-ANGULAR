@@ -1,0 +1,224 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* --- משתני צבעים --- */
+:host {
+  --brand-yellow: #FFD600;
+  --brand-yellow-hover: #F7C600;
+  --brand-yellow-light: #FFFde7;
+  --text-on-yellow: #000000;
+}
+
+/* القונטיינר הראשי */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  padding: 0 24px;
+  height: 60px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* --- צד שמאל (לוגו ופיד) --- */
+.nav-left {
+  display: flex;
+  align-items: center;
+  gap: 20px; /* ריווח כללי */
+}
+
+.logo {
+  font-size: 22px;
+  font-weight: 800;
+  color: #1c1e21;
+  letter-spacing: -0.5px;
+  margin-right: 10px;
+}
+
+.logo .highlight {
+  color: var(--brand-yellow);
+  text-shadow: 1px 1px 0px rgba(0,0,0,0.05);
+}
+
+/* --- עיצוב כפתור Contact Us החדש --- */
+.contact-btn {
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 20px;
+  
+  /* צבעים בסגנון "כפתור משני" */
+  background-color: #ffffff;
+  border: 1px solid #e4e6eb;
+  color: #65676b;
+  
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.contact-btn i {
+  font-size: 14px;
+  color: #65676b; /* אייקון אפור */
+  transition: color 0.2s;
+}
+
+.contact-btn:hover {
+  background-color: #f0f2f5;
+  border-color: #d8dadf;
+  color: #1c1e21; /* טקסט נהיה כהה יותר בהובר */
+  transform: translateY(-1px); /* אפקט הרמה עדין */
+}
+
+.contact-btn:hover i {
+  color: var(--brand-yellow-hover); /* האייקון מקבל צבע מותג בהובר */
+}
+
+/* לינקים רגילים (Feed) */
+.nav-link {
+  text-decoration: none;
+  color: #65676b;
+  font-weight: 600;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+
+.nav-link:hover {
+  background-color: #f7f8fa;
+  color: #1c1e21;
+}
+
+.nav-link.active-link {
+  color: #000;
+  background-color: var(--brand-yellow-light);
+}
+
+.nav-link.active-link i {
+  color: #eab308;
+}
+
+/* התאמה למובייל - הסתרת טקסטים */
+@media (max-width: 600px) {
+  .link-text { display: none; } /* מסתיר גם ב-Contact וגם ב-Feed */
+  .logo { display: none; }
+  
+  /* התאמת כפתור Contact למובייל שיראה כמו אייקון */
+  .contact-btn {
+    padding: 8px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    justify-content: center;
+    border: none;
+    background-color: #f0f2f5; /* רקע אפור עדין במקום מסגרת */
+  }
+}
+
+/* --- צד ימין (כפתורים ופרופיל) --- */
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.add-post-btn {
+  text-decoration: none;
+  background-color: var(--brand-yellow);
+  color: var(--text-on-yellow);
+  padding: 8px 24px;
+  border-radius: 24px;
+  font-weight: 700;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.1s, background-color 0.2s;
+  box-shadow: 0 4px 10px rgba(255, 214, 0, 0.25);
+}
+
+.add-post-btn:hover {
+  background-color: var(--brand-yellow-hover);
+  transform: translateY(-1px);
+}
+
+.action-icons {
+  display: flex;
+  gap: 6px;
+}
+
+.icon-btn {
+  background: #f0f2f5;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #050505;
+  font-size: 18px;
+  transition: background 0.2s;
+}
+
+.icon-btn:hover {
+  background-color: #e4e6eb;
+}
+
+.icon-btn.logout:hover {
+  background-color: #ffebeb;
+  color: #dc3545;
+}
+
+.user-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 4px 8px 4px 4px;
+  border-radius: 24px;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-left: 8px;
+  border: 2px solid transparent;
+}
+
+.user-profile:hover {
+  background-color: #f0f2f5;
+}
+
+.user-profile.active-profile {
+  background-color: var(--brand-yellow-light);
+  border-color: var(--brand-yellow);
+}
+
+.user-name {
+  font-weight: 600;
+  font-size: 14px;
+  color: #050505;
+  margin-right: 4px;
+}
+
+.user-profile img {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #e4e6eb;
+}
+
+@media (max-width: 600px) {
+  .user-name { display: none; }
+  .user-profile { padding: 0; margin-left: 0; border: none; }
+  .add-post-btn span { display: none; }
+  .add-post-btn { padding: 0; width: 40px; height: 40px; border-radius: 50%; justify-content: center; }
+}

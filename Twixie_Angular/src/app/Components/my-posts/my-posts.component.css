@@ -1,0 +1,418 @@
+:host {
+    --twixie-yellow: #FFD600;
+    --twixie-black: #212121;
+    --bg-color: #f8f9fa;
+    --white: #ffffff;
+    --danger: #ff4757;
+    --text-grey: #636e72;
+    --border: #dfe6e9;
+}
+
+.my-posts-wrapper {
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    padding: 30px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+/* --- Header Section --- */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 40px;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.header-text h2 {
+    font-size: 2rem;
+    color: var(--twixie-black);
+    margin: 0;
+    font-weight: 800;
+}
+
+.header-text p {
+    margin: 5px 0 0 0;
+    color: var(--text-grey);
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+/* Search Bar */
+.search-pill {
+    position: relative;
+    width: 250px;
+}
+
+.search-pill input {
+    width: 100%;
+    padding: 12px 15px 12px 40px;
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    background: var(--white);
+    outline: none;
+    transition: 0.3s;
+    box-sizing: border-box;
+}
+
+.search-pill input:focus {
+    border-color: var(--twixie-black);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.search-pill i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-grey);
+}
+
+/* Add Button */
+.btn-add-new {
+    background-color: var(--twixie-black);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-add-new:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    background-color: #000;
+}
+
+/* --- Grid Layout --- */
+.posts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* --- Manage Card Styling --- */
+.manage-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+    border: 1px solid var(--border);
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
+}
+
+.manage-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+}
+
+/* Image Area */
+.card-media {
+    height: 160px;
+    position: relative;
+    background-color: #eee;
+}
+
+.card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: #ccc;
+    background: #f1f2f6;
+}
+
+.topic-badge {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(33, 33, 33, 0.85); /* שחור שקוף */
+    color: var(--twixie-yellow);
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+/* Body Area */
+.card-body {
+    padding: 15px;
+    flex: 1;
+}
+
+.meta-info {
+    font-size: 0.8rem;
+    color: var(--text-grey);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.card-title {
+    margin: 0;
+    font-size: 1.1rem;
+    color: var(--twixie-black);
+    line-height: 1.3;
+}
+
+/* Actions Area (Bottom) */
+.card-actions {
+    padding: 10px 15px;
+    border-top: 1px solid #f1f2f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fafafa;
+}
+
+.action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background 0.2s, color 0.2s;
+    color: var(--text-grey);
+    flex: 1; /* כפתורים שווים ברוחב */
+}
+
+/* צבעים ספציפיים לכפתורים */
+.action-btn.view:hover {
+    background-color: #e3f2fd;
+    color: #2196f3;
+}
+
+.action-btn.edit:hover {
+    background-color: #fff9c4; /* צהוב בהיר */
+    color: #fbc02d;
+}
+
+.action-btn.delete:hover {
+    background-color: #ffebee;
+    color: var(--danger);
+}
+
+.divider-vertical {
+    width: 1px;
+    height: 20px;
+    background-color: #e0e0e0;
+}
+
+/* --- Empty State --- */
+.empty-dashboard {
+    text-align: center;
+    padding: 60px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.empty-icon {
+    width: 80px;
+    height: 80px;
+    background: #fff3cd; /* צהוב בהיר */
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #fbc02d;
+    margin-bottom: 20px;
+}
+
+.empty-dashboard h3 {
+    font-size: 1.5rem;
+    margin: 0 0 10px 0;
+    color: var(--twixie-black);
+}
+
+.btn-add-new.large {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+}
+
+/* Loading State */
+.loading-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px;
+    background: var(--white);
+    border-radius: 12px;
+    border: 2px dashed var(--border);
+    text-align: center;
+    gap: 20px;
+    color: var(--text-grey);
+}
+
+.loading-state p {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid #e0e0e0;
+    border-top-color: var(--twixie-yellow);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* מובייל */
+@media (max-width: 600px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .search-pill {
+        width: 100%;
+    }
+}
+
+/* === Dark Mode Styles === */
+:host(.dark-mode) .my-posts-wrapper {
+    background-color: #121212;
+}
+
+:host(.dark-mode) .header-text h2 {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .header-text p {
+    color: #909090;
+}
+
+:host(.dark-mode) .search-pill input {
+    background: #2d2d2d;
+    border-color: #444444;
+    color: #ffffff;
+}
+
+:host(.dark-mode) .search-pill i {
+    color: #888888;
+}
+
+:host(.dark-mode) .btn-add-new {
+    background-color: #FFD600;
+    color: #212121;
+}
+
+:host(.dark-mode) .btn-add-new:hover {
+    background-color: #fbc02d;
+    box-shadow: 0 4px 12px rgba(255, 214, 0, 0.3);
+}
+
+:host(.dark-mode) .manage-card {
+    background: #1a1a1a;
+    border-color: #333333;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+:host(.dark-mode) .manage-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+:host(.dark-mode) .card-media {
+    background-color: #2d2d2d;
+}
+
+:host(.dark-mode) .no-image-placeholder {
+    background: #252525;
+    color: #555555;
+}
+
+:host(.dark-mode) .topic-badge {
+    background: rgba(255, 214, 0, 0.2);
+    color: #FFD600;
+}
+
+:host(.dark-mode) .card-body {
+    background: #1a1a1a;
+}
+
+:host(.dark-mode) .meta-info {
+    color: #888888;
+}
+
+:host(.dark-mode) .card-title {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .card-actions {
+    background: #252525;
+    border-top-color: #333333;
+}
+
+:host(.dark-mode) .action-btn {
+    color: #909090;
+}
+
+:host(.dark-mode) .action-btn.view:hover {
+    background-color: #1a2a3a;
+    color: #2196f3;
+}
+
+:host(.dark-mode) .action-btn.edit:hover {
+    background-color: #2d2d1a;
+    color: #fbc02d;
+}
+
+:host(.dark-mode) .action-btn.delete:hover {
+    background-color: #3a1a1a;
+    color: #ff4757;
+}
+
+:host(.dark-mode) .divider-vertical {
+    background-color: #444444;
+}
+
+:host(.dark-mode) .empty-icon {
+    background: #2d2d2d;
+    color: #FFD600;
+}
+
+:host(.dark-mode) .empty-dashboard h3 {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .loading-state {
+    background: #1a1a1a;
+    border-color: #333333;
+    color: #909090;
+}
+
+:host(.dark-mode) .spinner {
+    border-color: #333333;
+    border-top-color: #FFD600;
+}

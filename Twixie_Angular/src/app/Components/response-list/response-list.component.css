@@ -1,0 +1,127 @@
+:host {
+  display: block;
+  width: 100%;
+}
+
+.post-actions {
+  display: flex;
+  border-top: 1px solid #f0f2f5;
+  padding: 4px;
+  margin: 0 12px;
+}
+
+.post-actions button {
+  flex: 1;
+  background: none;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: #65676b;
+  cursor: pointer;
+  transition: background 0.2s;
+  font-size: 14px;
+}
+
+.post-actions button:hover {
+  background-color: #f2f2f2;
+}
+
+.response-list {
+  background-color: #ffffff;
+  padding: 0 16px 16px 16px;
+  /* קו עליון בגוון אפור-חם */
+  border-top: 1px solid #f0f0eb;
+}
+
+/* עיצוב הכותרת */
+.response-list h2 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #050505;
+  margin: 16px 0 12px 0;
+  display: flex;
+  align-items: center;
+}
+
+/* הפס הצבעוני ליד הכותרת - עכשיו בצהוב זהב */
+.response-list h2::before {
+  content: "";
+  display: block;
+  width: 4px;
+  height: 16px;
+  background-color: #f59e0b;
+  /* צבע זהב/ענבר חזק */
+  margin-right: 8px;
+  border-radius: 2px;
+}
+
+/* עיצוב הודעת "No responses yet" - בגווני צהוב */
+.response-list>p {
+  text-align: center;
+  color: #857550;
+  /* טקסט חום-אפרפר שמשתלב עם צהוב */
+  font-size: 14px;
+  padding: 30px 0;
+  margin: 10px 0;
+  background-color: #fffbeb;
+  /* רקע צהוב פסטל בהיר מאוד */
+  border-radius: 8px;
+  border: 1px dashed #fcd34d;
+  /* מסגרת מקווקוות בגוון זהב בהיר */
+}
+
+app-response-item {
+  display: block;
+  margin-bottom: 8px;
+}
+
+app-response-item:last-child {
+  margin-bottom: 0;
+}
+
+/* === Dark Mode Styles === */
+:host(.dark-mode) {
+  display: block;
+  width: 100%;
+  background: transparent;
+}
+
+:host(.dark-mode) .post-actions {
+  border-top-color: #333333;
+  background: transparent;
+  margin: 0 0;
+  padding: 4px 0;
+}
+
+:host(.dark-mode) .post-actions button {
+  color: #b0b0b0;
+  font-weight: 600;
+}
+
+:host(.dark-mode) .post-actions button:hover {
+  background-color: #2d2d2d;
+  border-radius: 4px;
+}
+
+:host(.dark-mode) .response-list {
+  background-color: #1a1a1a;
+  border-top-color: #333333;
+  padding: 0 16px 16px 16px;
+  border-top: 1px solid #333333;
+}
+
+:host(.dark-mode) .response-list h2 {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+:host(.dark-mode) .response-list h2::before {
+  background-color: #FFD600;
+}
+
+:host(.dark-mode) .response-list>p {
+  color: #a0836d;
+  background-color: #2d2d1a;
+  border-color: #444433;
+}

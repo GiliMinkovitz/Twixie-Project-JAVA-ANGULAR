@@ -1,0 +1,268 @@
+:host {
+    /* משתנים זהים ל-Sign Up */
+    --twixie-yellow: #FFD600;
+    --twixie-black: #212121;
+    --white: #ffffff;
+    --input-bg: #f3f3f3;
+    --shadow-soft: 0 20px 40px rgba(0,0,0,0.1);
+
+    /* Dark mode variables */
+    --dark-bg: #1a1a1a;
+    --dark-secondary: #2d2d2d;
+    --dark-input: #3a3a3a;
+    --text-light: #e0e0e0;
+    --text-secondary: #b0b0b0;
+    --border-dark: #404040;
+}
+
+/* --- מעטפת חיצונית (מסך מלא צהוב) --- */
+.login-wrapper {
+    min-height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--input-bg);
+    padding: 20px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    position: relative;
+    overflow: hidden;
+}
+
+:host(.dark-mode) .login-wrapper {
+    background-color: var(--dark-bg);
+}
+
+.bg-pattern {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-image: radial-gradient(#FBC02D 1px, transparent 1px);
+    background-size: 30px 30px;
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* --- הכרטיס המרכזי --- */
+.auth-card {
+    background-color: var(--white);
+    width: 100%;
+    max-width: 400px; /* קצת יותר צר מההרשמה */
+    border-radius: 30px;
+    padding: 40px;
+    box-shadow: var(--shadow-soft);
+    position: relative;
+    z-index: 10;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+:host(.dark-mode) .auth-card {
+    background-color: var(--dark-secondary);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+}
+
+/* --- כותרת ולוגו --- */
+.card-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* הלוגו המעודכן */
+.mini-logo {
+    font-size: 2.5rem; /* הגדלתי קצת שיראה מרשים */
+    font-weight: 900;
+    color: var(--twixie-yellow);
+    margin: 0 0 10px 0;
+    letter-spacing: -2px;
+    line-height: 1;
+}
+
+.title {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: var(--twixie-black);
+    margin: 0;
+}
+
+:host(.dark-mode) .title {
+    color: var(--text-light);
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #757575;
+    margin: 5px 0 0 0;
+    font-weight: 400;
+}
+
+:host(.dark-mode) .subtitle {
+    color: var(--text-secondary);
+}
+
+/* --- טופס --- */
+.form-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    margin-left: 10px;
+    color: var(--twixie-black);
+}
+
+:host(.dark-mode) .input-group label {
+    color: var(--text-light);
+}
+
+input {
+    width: 100%;
+    padding: 16px 20px;
+    border-radius: 18px;
+    border: 2px solid transparent;
+    background-color: var(--input-bg);
+    font-size: 1rem;
+    color: var(--twixie-black);
+    box-sizing: border-box;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+input:focus {
+    outline: none;
+    background-color: var(--white);
+    border-color: var(--twixie-black);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+:host(.dark-mode) input {
+    background-color: var(--dark-input);
+    color: var(--text-light);
+}
+
+:host(.dark-mode) input:focus {
+    background-color: #4a4a4a;
+    border-color: var(--twixie-yellow);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+/* --- כפתור Forgot Password --- */
+.forgot-password {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.forgot-password a {
+    font-size: 0.85rem;
+    color: #757575;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.forgot-password a:hover {
+    color: var(--twixie-black);
+    text-decoration: underline;
+}
+
+:host(.dark-mode) .forgot-password a {
+    color: var(--text-secondary);
+}
+
+:host(.dark-mode) .forgot-password a:hover {
+    color: var(--twixie-yellow);
+}
+
+/* --- כפתור התחברות --- */
+.btn-submit {
+    margin-top: 25px;
+    width: 100%;
+    padding: 18px;
+    border-radius: 50px;
+    border: none;
+    background-color: var(--twixie-black);
+    color: var(--white);
+    font-size: 1.1rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.btn-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    background-color: #000;
+}
+
+.btn-submit:disabled {
+    background-color: #e0e0e0;
+    color: #9e9e9e;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+:host(.dark-mode) .btn-submit:disabled {
+    background-color: #505050;
+    color: #707070;
+}
+
+/* --- פוטר (קישור להרשמה) --- */
+.footer-link {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.footer-link p {
+    font-size: 0.95rem;
+    color: #757575;
+}
+
+.footer-link a {
+    color: var(--twixie-black);
+    font-weight: 800;
+    text-decoration: none;
+}
+.footer-link a:hover { text-decoration: underline; }
+
+:host(.dark-mode) .footer-link p {
+    color: var(--text-secondary);
+}
+
+:host(.dark-mode) .footer-link a {
+    color: var(--twixie-yellow);
+}
+
+:host(.dark-mode) .footer-link a:hover {
+    color: #fff;
+}
+
+/* --- אנימציה --- */
+@keyframes popIn {
+    0% { opacity: 0; transform: scale(0.9); }
+    100% { opacity: 1; transform: scale(1); }
+}
+
+/* --- מובייל --- */
+@media (max-width: 500px) {
+    .login-wrapper {
+        padding: 0;
+        background-color: var(--white);
+    }
+
+    .auth-card {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 30px 20px;
+        height: 100vh;
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .bg-pattern { display: none; }
+}

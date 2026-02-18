@@ -1,0 +1,236 @@
+:host {
+    /* פאלטת הצבעים של Twixie */
+    --twixie-yellow: #FFD600;       /* צהוב מותג חזק */
+    --twixie-yellow-dark: #FBC02D;  /* צהוב כהה יותר להצללות */
+    --twixie-black: #212121;        /* שחור כהה לטקסט */
+    --white: #ffffff;
+    --gray-light: #f5f5f5;
+    --gray-text: #757575;
+}
+
+.landing-container {
+    display: flex;
+    min-height: 100vh;
+    width: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden; /* מונע גלילה מיותרת */
+}
+
+/* --- צד שמאל: מותג (צהוב) --- */
+.brand-side {
+    flex: 1.2; /* לוקח קצת יותר מקום מצד ימין */
+    background-color: var(--twixie-yellow);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.brand-content {
+    z-index: 10;
+    text-align: center;
+    padding: 40px;
+    animation: fadeIn 1s ease-out;
+}
+
+.logo-wrapper {
+    margin-bottom: 30px;
+}
+
+.app-logo {
+    width: 180px; /* גודל לוגו מרשים */
+    height: auto;
+    filter: drop-shadow(0 10px 20px rgba(0,0,0,0.1)); /* צל עדין ללוגו */
+    /* אנימציית ריחוף קלה */
+    animation: float 6s ease-in-out infinite;
+}
+
+.brand-text h1 {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: var(--twixie-black);
+    margin: 0 0 10px 0;
+    line-height: 1.1;
+    letter-spacing: -1px;
+}
+
+.brand-text p {
+    font-size: 1.5rem;
+    color: var(--twixie-black);
+    opacity: 0.8;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* קישוטים ברקע הצהוב */
+.circle-decoration {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15); /* לבן שקוף */
+}
+
+.circle-decoration.top {
+    width: 400px;
+    height: 400px;
+    top: -100px;
+    left: -100px;
+}
+
+.circle-decoration.bottom {
+    width: 600px;
+    height: 600px;
+    bottom: -200px;
+    right: -200px;
+}
+
+/* --- צד ימין: פעולות (לבן) --- */
+.action-side {
+    flex: 1;
+    background-color: var(--white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+.action-content {
+    max-width: 400px;
+    width: 100%;
+    animation: slideUp 0.8s ease-out;
+}
+
+.welcome-title {
+    font-size: 3rem;
+    font-weight: 900;
+    color: var(--twixie-black);
+    margin: 0 0 10px 0;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: var(--gray-text);
+    margin: 0 0 50px 0;
+}
+
+/* --- כפתורים --- */
+.buttons-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    border-radius: 50px; /* כפתורים עגולים לגמרי */
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+    cursor: pointer;
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* כפתור ראשי - שחור (קונטרסט חזק לצהוב) */
+.btn-primary {
+    background-color: var(--twixie-black);
+    color: var(--white);
+    border: 2px solid var(--twixie-black);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+.btn-primary:hover {
+    background-color: #000;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+    transform: translateY(-2px);
+}
+
+/* כפתור משני - מסגרת */
+.btn-outline {
+    background-color: transparent;
+    color: var(--twixie-black);
+    border: 2px solid #e0e0e0;
+}
+
+.btn-outline:hover {
+    border-color: var(--twixie-black);
+    background-color: #fafafa;
+}
+
+/* מפריד טקסט */
+.divider {
+    text-align: center;
+    margin: 10px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.divider span {
+    background: var(--white);
+    padding: 0 10px;
+    color: var(--gray-text);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+/* פוטר קטן */
+.mini-footer {
+    margin-top: 60px;
+    font-size: 0.8rem;
+    color: #ccc;
+    text-align: center;
+}
+
+/* --- אנימציות --- */
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- התאמה למובייל --- */
+@media (max-width: 900px) {
+    .landing-container {
+        flex-direction: column; /* הופך לטור */
+    }
+
+    .brand-side {
+        flex: 1;
+        padding: 60px 20px;
+        min-height: 40vh; /* לוקח פחות מחצי מסך */
+    }
+
+    .app-logo {
+        width: 120px;
+    }
+
+    .brand-text h1 {
+        font-size: 2.5rem;
+    }
+
+    .action-side {
+        flex: 1.5;
+        padding: 40px 20px;
+        align-items: flex-start; /* הצמדה למעלה במובייל */
+    }
+
+    .welcome-title {
+        font-size: 2.5rem;
+    }
+}

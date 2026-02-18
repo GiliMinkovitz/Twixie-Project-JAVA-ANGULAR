@@ -1,0 +1,232 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/* הקונטיינר הראשי */
+.add-post-container {
+  margin: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+/* עיצוב הטופס ככרטיס */
+.response-form {
+  background-color: #f0f2f5; /* רקע אפור בהיר התחלתי */
+  border-radius: 24px; /* פינות עגולות מאוד (Pill shape) */
+  padding: 8px 16px;
+  width: 100%;
+  max-width: 600px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease; /* אנימציה חלקה לפתיחה */
+
+  /* חשוב: זה מה שמאפשר להסתיר/להציג דברים כשלוחצים בפנים */
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- המצב הפתוח (Focus) --- */
+/* כשהמשתמש לוחץ בתוך הטופס, הוא משנה צבע וגדל */
+.response-form:focus-within {
+  background-color: #ffffff; /* רקע לבן כשפעיל */
+  border: 1px solid #dcdfe2; /* גבול בהיר יותר */
+   box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+   border-radius: 12px; /* הפינות נהיות פחות עגולות */
+}
+
+/* אזור האינפוט והאייקון */
+.input-area {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+/* האייקון הקטן בצד שמאל */
+.user-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background-color: #e4e6eb;
+  border-radius: 50%;
+  color: #65676b;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* שדה הטקסט */
+textarea {
+  flex: 1;
+  background: transparent;
+  border: none;
+  resize: none; /* מונע גרירה ידנית */
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  outline: none;
+  min-height: 24px; /* גובה התחלתי נמוך - שורה אחת */
+  padding: 6px 0;
+  color: #050505;
+  transition: min-height 0.2s ease;
+}
+
+/* כשהמשתמש לוחץ על הטקסט, הוא נמתח לגובה */
+.response-form:focus-within textarea {
+  min-height: 80px; /* גדל ל-3-4 שורות */
+}
+
+/* --- אזור הכפתורים --- */
+.actions {
+  display: flex;
+  justify-content: flex-end;
+
+  /* טריק CSS: מסתיר את הכפתור בברירת מחדל */
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transition: all 0.3s ease;
+}
+
+/* חשיפת הכפתור כשהטופס בפוקוס */
+.response-form:focus-within .actions {
+  max-height: 50px; /* נותן מקום לכפתור */
+  opacity: 1;
+  margin-top: 8px; /* רווח מהטקסט */
+}
+
+/* כפתור השליחה */
+button {
+  background-color: #f59e0b; /* זהב */
+  color: white;
+  border: none;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-family: inherit;
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+button:hover {
+  background-color: #d97706;
+}
+
+/* === Dark Mode Styles === */
+:root.dark-mode,
+:host(.dark-mode) {
+  --bg-dark: #1a1a1a;
+  --text-dark: #ffffff;
+  --border-dark: #2d2d2d;
+  --accent-dark: #FFD600;
+}
+
+:host(.dark-mode) {
+  display: block;
+  width: 100%;
+  background: transparent;
+}
+
+:host(.dark-mode) .add-post-container {
+  background: transparent !important;
+  margin: 10px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0;
+}
+
+:host(.dark-mode) .response-form {
+  background-color: #1a1a1a !important;
+  border: 1px solid #2d2d2d !important;
+  border-color: #2d2d2d !important;
+  padding: 8px 16px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+:host(.dark-mode) .response-form:focus-within {
+  background-color: #252525 !important;
+  border-color: #FFD600 !important;
+  box-shadow: 0 4px 12px rgba(255, 214, 0, 0.25);
+  border-radius: 16px;
+}
+
+:host(.dark-mode) .input-area {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+:host(.dark-mode) .user-icon {
+  background-color: #2d2d2d;
+  color: #FFD600;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+:host(.dark-mode) textarea {
+  color: #ffffff !important;
+  background: transparent !important;
+  border: none !important;
+  flex: 1;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  outline: none !important;
+  min-height: 24px;
+  padding: 6px 0;
+  caret-color: #FFD600;
+}
+
+:host(.dark-mode) textarea::placeholder {
+  color: #777777;
+}
+
+:host(.dark-mode) .response-form:focus-within textarea {
+  min-height: 80px;
+}
+
+:host(.dark-mode) .actions {
+  display: flex;
+  justify-content: flex-end;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  margin-top: 0;
+  transition: all 0.3s ease;
+}
+
+:host(.dark-mode) .response-form:focus-within .actions {
+  max-height: 50px;
+  opacity: 1;
+  margin-top: 8px;
+}
+
+:host(.dark-mode) button {
+  background-color: #FFD600 !important;
+  color: #212121 !important;
+  border: none !important;
+  padding: 6px 20px;
+  border-radius: 20px;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px rgba(255, 214, 0, 0.2);
+}
+
+:host(.dark-mode) button:hover {
+  background-color: #fbc02d !important;
+  box-shadow: 0 4px 12px rgba(255, 214, 0, 0.3);
+}
+
+

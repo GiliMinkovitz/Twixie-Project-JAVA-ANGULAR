@@ -1,0 +1,367 @@
+:host {
+    display: block;
+    --twixie-yellow: #FFD600;
+    --twixie-bg: #FFFDE7;
+    --twixie-black: #212121;
+    --border-color: #f5f5f5;
+}
+
+/* --- מעטפת הדף --- */
+.follow-page-wrapper {
+    background-color: var(--twixie-bg);
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/* --- הקופסה של הרשימה --- */
+.follow-list-container {
+    width: 100%;
+    max-width: 600px;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+
+    /* === תיקון 1: שינוי מ-hidden ל-visible === */
+    /* זה מאפשר לכרטיס הריחוף לצאת מחוץ לגבולות הקופסה */
+    overflow: visible;
+
+    min-height: 600px;
+    display: flex;
+    flex-direction: column;
+    position: relative; /* כדי לשמור על יציבות */
+}
+
+/* --- כותרת הרשימה --- */
+.list-header {
+    padding: 20px 25px;
+    border-bottom: 1px solid var(--border-color);
+    background: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    /* === תיקון 2: החזרת הפינות העגולות למעלה === */
+    /* מכיוון שביטלנו את overflow: hidden בקונטיינר, צריך לעגל את הכותרת ידנית */
+    border-radius: 16px 16px 0 0;
+}
+
+.list-header h3 {
+    margin: 0;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--twixie-black);
+}
+
+.count-badge {
+    background: var(--twixie-yellow);
+    color: var(--twixie-black);
+    font-size: 0.8rem;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* --- תוכן הרשימה --- */
+.list-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* --- שורת משתמש --- */
+.user-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 25px;
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.2s ease;
+    background: #fff;
+
+    /* === תיקון 3: ניהול שכבות (Stacking Context) === */
+    position: relative;
+    z-index: 1;
+}
+
+/* כאשר מרחפים על שורה, היא מקבלת עדיפות עליונה */
+/* זה מבטיח שהפופ-אפ של שורה זו יעלה מעל השורות שמתחתיה */
+.user-row:hover {
+    background-color: #fafafa;
+    z-index: 50;
+}
+
+/* --- אלמנטים פנימיים --- */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    cursor: pointer;
+}
+
+.avatar-wrapper {
+    width: 50px;
+    height: 50px;
+}
+
+.avatar-wrapper img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--twixie-yellow);
+    padding: 2px;
+    background: #fff;
+}
+
+.text-details {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--twixie-black);
+}
+
+.handle {
+    font-size: 13px;
+    color: #9e9e9e;
+}
+
+/* --- כפתורים --- */
+.action-area {
+    min-width: 100px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.btn-action {
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.2s;
+    outline: none;
+    min-width: 100px;
+}
+
+.unfollow {
+    background-color: transparent;
+    border: 1px solid #e0e0e0;
+    color: var(--twixie-black);
+}
+
+.unfollow span { display: block; }
+.unfollow .hover-text { display: none; }
+
+.unfollow:hover {
+    background-color: #ffebee;
+    border-color: #ffcdd2;
+    color: #d32f2f;
+}
+
+.unfollow:hover span { display: none; }
+.unfollow:hover .hover-text { display: block; }
+
+.view-profile {
+    background-color: #f5f5f5;
+    color: var(--twixie-black);
+}
+.view-profile:hover {
+    background-color: #eeeeee;
+}
+
+/* --- קישוט סוף רשימה --- */
+.list-footer-decoration {
+    padding: 30px;
+    text-align: center;
+    color: #e0e0e0;
+    font-size: 8px;
+    margin-top: auto;
+}
+
+/* --- מצב ריק --- */
+.empty-state-full {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+    color: #757575;
+}
+
+.empty-icon-circle {
+    width: 80px;
+    height: 80px;
+    background: #FFF9C4;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.empty-icon-circle i {
+    font-size: 30px;
+    color: #FBC02D;
+}
+
+.empty-state-full h3 {
+    margin: 0 0 10px 0;
+    color: var(--twixie-black);
+}
+
+.empty-state-full p {
+    margin: 0;
+    font-size: 0.9rem;
+    max-width: 250px;
+}
+
+/* --- Profile Section & Hover Card --- */
+
+.profile-section {
+    position: relative;
+    margin-right: 14px;
+    margin-top: 4px;
+}
+
+/* טריגר להצגת הכרטיס */
+.profile-section:hover .user-hover-card {
+    visibility: visible;
+    opacity: 1;
+    /* הוספת טרנספורם קטן לאנימציה חלקה */
+    transform: translateY(0);
+}
+
+.user-hover-card::before {
+    content: "";
+    position: absolute;
+    top: -6px;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background: white;
+    transform: rotate(45deg);
+    border-left: 1px solid #ddd;
+    border-top: 1px solid #ddd;
+}
+
+/* --- User Details Hover Card --- */
+.user-hover-card {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    min-width: 280px;
+    padding: 16px;
+
+    /* צל חזק יותר כדי להבליט מעל אלמנטים אחרים */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    border: 1px solid #ddd;
+
+    /* === תיקון 4: Z-Index גבוה מאוד === */
+    z-index: 9999;
+
+    transition: all 0.2s ease-in-out;
+    margin-top: 10px;
+
+    /* התחלה מעט נמוכה יותר לאנימציה */
+    transform: translateY(10px);
+}
+
+/* === Dark Mode Styles === */
+:host(.dark-mode) .follow-page-wrapper {
+    background-color: #0a0a0a;
+}
+
+:host(.dark-mode) .follow-list-container {
+    background: #1a1a1a;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+:host(.dark-mode) .list-header {
+    background: #1a1a1a;
+    border-bottom-color: #333333;
+}
+
+:host(.dark-mode) .list-header h3 {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .user-row {
+    background: #1a1a1a;
+    border-bottom-color: #333333;
+}
+
+:host(.dark-mode) .user-row:hover {
+    background-color: #252525;
+}
+
+:host(.dark-mode) .username {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .handle {
+    color: #888888;
+}
+
+:host(.dark-mode) .unfollow {
+    background-color: transparent;
+    border-color: #444444;
+    color: #ffffff;
+}
+
+:host(.dark-mode) .unfollow:hover {
+    background-color: #4a0e0e;
+    border-color: #c41c3b;
+    color: #ff4757;
+}
+
+:host(.dark-mode) .view-profile {
+    background-color: #2d2d2d;
+    color: #ffffff;
+}
+
+:host(.dark-mode) .view-profile:hover {
+    background-color: #383838;
+}
+
+:host(.dark-mode) .empty-state-full {
+    color: #909090;
+}
+
+:host(.dark-mode) .empty-icon-circle {
+    background: #2d2d2d;
+}
+
+:host(.dark-mode) .empty-icon-circle i {
+    color: #FFD600;
+}
+
+:host(.dark-mode) .empty-state-full h3 {
+    color: #ffffff;
+}
+
+:host(.dark-mode) .user-hover-card {
+    background-color: #1e1e1e;
+    border-color: #444444;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+:host(.dark-mode) .user-hover-card::before {
+    background: #1e1e1e;
+    border-left-color: #444444;
+    border-top-color: #444444;
+}

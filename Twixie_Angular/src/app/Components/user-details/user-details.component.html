@@ -1,0 +1,20 @@
+@if(user){
+  <h2>Profile</h2>
+
+  <img height="auto" width="300px" src="data:image/jpeg;base64,{{ user.picture }}" />
+
+  <div>
+      <h3>{{user.userName}}</h3>
+  </div>
+
+  <div>
+      <h3>{{user.biography}}</h3>
+  </div>
+
+  @if(this.isFollowing){
+    <button (click)="removeFollow()" style="background-color: #e4e6eb; color: black;">Unfollow</button>
+  }
+  @else{
+    <button (click)="addFollow()">Follow</button>
+  }
+}

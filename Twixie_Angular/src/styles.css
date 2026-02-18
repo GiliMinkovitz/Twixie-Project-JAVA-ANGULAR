@@ -1,0 +1,166 @@
+/* styles.css - הוסיפי את זה לקובץ הגלובלי */
+
+:root {
+  /* Font Sizes */
+  --font-size-small: 14px;
+  --font-size-medium: 16px;
+  --font-size-large: 18px;
+  --font-size-x-large: 20px;
+
+  /* Default font size */
+  --app-font-size: medium;
+
+  /* Light Mode Colors */
+  --background-primary: #ffffff;
+  --background-secondary: #f5f5f5;
+  --card-background: #ffffff;
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --border-color: #e0e0e0;
+  --input-background: #ffffff;
+  --shadow: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode */
+.dark-mode {
+  --background-primary: #1a1a1a;
+  --background-secondary: #2d2d2d;
+  --card-background: #2d2d2d;
+  --text-primary: #e0e0e0;
+  --text-secondary: #b0b0b0;
+  --border-color: #404040;
+  --input-background: #3a3a3a;
+  --shadow: rgba(0, 0, 0, 0.3);
+}
+
+/* Apply font size based on setting */
+body {
+  background-color: var(--background-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Font size classes - applied via --app-font-size */
+body,
+input,
+textarea,
+select,
+button {
+  font-size: var(--font-size-medium);
+}
+
+:root[style*="--app-font-size: small"] body,
+:root[style*="--app-font-size: small"] input,
+:root[style*="--app-font-size: small"] textarea,
+:root[style*="--app-font-size: small"] select,
+:root[style*="--app-font-size: small"] button {
+  font-size: var(--font-size-small);
+}
+
+:root[style*="--app-font-size: large"] body,
+:root[style*="--app-font-size: large"] input,
+:root[style*="--app-font-size: large"] textarea,
+:root[style*="--app-font-size: large"] select,
+:root[style*="--app-font-size: large"] button {
+  font-size: var(--font-size-large);
+}
+
+:root[style*="--app-font-size: x-large"] body,
+:root[style*="--app-font-size: x-large"] input,
+:root[style*="--app-font-size: x-large"] textarea,
+:root[style*="--app-font-size: x-large"] select,
+:root[style*="--app-font-size: x-large"] button {
+  font-size: var(--font-size-x-large);
+}
+
+/* Example: Card styling that respects theme */
+.card {
+  background: var(--card-background);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 4px var(--shadow);
+  padding: 1rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+/* Example: Input styling that respects theme */
+input,
+textarea,
+select {
+  background: var(--input-background);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  outline: none;
+  border-color: #4CAF50;
+}
+
+/* Dark mode specific adjustments */
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select {
+  color: var(--text-primary);
+}
+
+.dark-mode input::placeholder,
+.dark-mode textarea::placeholder {
+  color: var(--text-secondary);
+}
+
+/* Smooth transitions for theme changes */
+* {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Stronger dark-mode overrides to prevent component-specific styles from accidentally
+   overriding the global dark theme. These use conservative selectors and `!important`
+   only for color/background/border to avoid layout changes. Add or extend selectors
+   here if you see other components still overriding theme colors. */
+.dark-mode body,
+.dark-mode header,
+.dark-mode nav,
+.dark-mode main,
+.dark-mode section,
+.dark-mode article,
+.dark-mode .card,
+.dark-mode .menu-bar,
+.dark-mode .container,
+.dark-mode .page,
+.dark-mode .post,
+.dark-mode .response-item {
+  background-color: var(--background-primary) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}
+
+.dark-mode a,
+.dark-mode p,
+.dark-mode span,
+.dark-mode label,
+.dark-mode div,
+.dark-mode li,
+.dark-mode button {
+  color: var(--text-primary) !important;
+}
+
+.dark-mode input,
+.dark-mode textarea,
+.dark-mode select,
+.dark-mode .mat-form-field-infix {
+  background-color: var(--input-background) !important;
+  color: var(--text-primary) !important;
+  border-color: var(--border-color) !important;
+}

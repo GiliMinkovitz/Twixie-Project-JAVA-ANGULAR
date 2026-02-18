@@ -1,0 +1,85 @@
+
+<app-menu-bar></app-menu-bar>
+<div class="my-posts-wrapper">
+
+    <!-- כותרת וסרגל כלים עליון -->
+    <div class="dashboard-header">
+        <div class="header-text">
+            <h2>My Contributions</h2>
+            <p>Manage and track your content</p>
+        </div>
+
+        <div class="header-actions">
+            <!-- חיפוש -->
+            <div class="search-pill">
+                <i class="fas fa-search"></i>
+                <input type="text" placeholder="Search my posts..." (input)="search($event.target.value)">
+            </div>
+
+            <!-- כפתור הוספה בולט -->
+            <a routerLink="/add-post" routerLinkActive="active-link" class="btn-add-new">
+                <i class="fas fa-plus"></i> New Post
+            </a>
+        </div>
+    </div>
+
+    <!-- רשימת הפוסטים -->
+    @if(isLoading) {
+    <div class="loading-state">
+        <div class="spinner"></div>
+        <p>Loading your posts...</p>
+    </div>
+    } @else if(postList && postList.length > 0){
+    <div class="posts-grid">
+        @for(post of postList; track $index){
+        <div class="manage-card">
+
+            <!-- תמונת הפוסט עם תגית נושא צפה -->
+            <div class="card-media">
+                @if(post.imagePath){
+                <img src="data:image/jpeg;base64,{{ post.imagePath }}" alt="Post image" />
+                } @else {
+                <div class="no-image-placeholder">
+                    <i class="fas fa-quote-right"></i>
+                </div>
+                }
+                <span class="topic-badge">{{post.topicName}}</span>
+            </div>
+
+            <!-- תוכן הכרטיס -->
+            <div class="card-body">
+                <div class="meta-info">
+                    <i class="far fa-clock"></i> {{ post.lastUpdated | timeAgo }}
+                </div>
+
+                <h3 class="card-title">{{post.title}}</h3>
+            </div>
+
+            <!-- כפתורי פעולה -->
+            <div class="card-actions">
+                <button (click)="toShowDetails(post)" class="action-btn view" title="View">
+                    <i class="far fa-eye"></i>
+                </button>
+                <div class="divider-vertical"></div>
+                <button (click)="toEditPost(post)" class="action-btn edit" title="Edit">
+                    <i class="fas fa-pen"></i>
+                </button>
+                <button (click)="deletePost(post)" class="action-btn delete" title="Delete">
+                    <i class="far fa-trash-alt"></i>
+                </button>
+            </div>
+        </div>
+        }
+    </div>
+    } @else {
+    <!-- מצב ריק -->
+    <div class="empty-dashboard">
+        <div class="empty-icon">
+            <i class="fas fa-pencil-ruler"></i>
+        </div>
+        <h3>You haven't posted yet</h3>
+        <p>Share your first thought with the world!</p>
+        <a routerLink="/add-post" class="btn-add-new large">Create Post</a>
+    </div>
+    }
+</div>

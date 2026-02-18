@@ -1,0 +1,17 @@
+<div class="post-actions">
+    <button (click)="addResponse()">Comment</button>
+</div>
+@if(responseList){
+<div class="response-list">
+    <h2>Comments:</h2>
+
+    @if(responseList && responseList.length > 0) {
+    @for(rootResponse of responseList; track rootResponse.responseId) {
+    <app-response-item [response]="rootResponse" [depth]="0" (responseDeleted)="deletedSomeResponse()"
+        (responseAdded)="getResponseList()">
+    </app-response-item>
+    }
+    } @else {
+    <p>No responses yet.</p>
+    }
+</div>}

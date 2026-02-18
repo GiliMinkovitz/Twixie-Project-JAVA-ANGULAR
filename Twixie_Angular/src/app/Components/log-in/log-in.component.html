@@ -1,0 +1,37 @@
+<div class="login-wrapper">
+    <!-- דוגמה עדינה ברקע -->
+    <div class="bg-pattern"></div>
+
+    <div class="auth-card">
+        <div class="card-header">
+            <h1 class="mini-logo"><span style="color: var(--twixie-black);">TW</span><span>IXIE</span></h1>
+
+            <h2 class="title">Welcome Back!</h2>
+            <p class="subtitle">Log in to see what's happening today.</p>
+        </div>
+
+        <form [formGroup]="logInForm" (ngSubmit)="logIn()">
+
+            <div class="form-grid">
+                <div class="input-group">
+                    <label>Username</label>
+                    <input formControlName="userName" type="text" placeholder="@username" autocomplete="off">
+                </div>
+
+                <div class="input-group">
+                    <label>Password</label>
+                    <input formControlName="password" type="password" placeholder="Enter your password"
+                        autocomplete="off">
+                </div>
+            </div>
+
+            <button type="submit" class="btn-submit" [disabled]="!logInForm.valid">
+                Log In
+            </button>
+
+            <div class="footer-link">
+                <p>New to Twixie? <a routerLink="/sign-up" routerLinkActive="active">Create account</a></p>
+            </div>
+        </form>
+    </div>
+</div>

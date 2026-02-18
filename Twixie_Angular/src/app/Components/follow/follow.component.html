@@ -1,0 +1,64 @@
+
+<app-menu-bar />
+<!-- עטיפה חיצונית שנותנת צבע רקע לכל המסך -->
+<div class="follow-page-wrapper">
+
+    <div class="follow-list-container">
+        <!-- כותרת לרשימה (אופציונלי - מוסיף המון למראה) -->
+        <div class="list-header">
+            <h3>{{ id === 2 ? 'Following' : 'Followers' }}</h3>
+            <span class="count-badge">{{ follow?.length || 0 }}</span>
+        </div>
+
+        <div class="list-content">
+            @if(follow && follow.length > 0) {
+            @for(f of follow; track $index){
+            <div class="user-row">
+
+                <div class="user-info">
+                    <div class="avatar-wrapper">
+                        <img src="data:image/jpeg;base64,{{ f.picture }}" alt="{{f.userName}}" />
+                    </div>
+                    <div class="text-details">
+                        <span class="username">{{f.userName}}</span>
+                        <span class="handle">@ {{f.userName | lowercase}}</span>
+                    </div>
+                </div>
+
+                <div class="action-area" class="profile-section">
+                    @if(this.id === 2){
+                    <button class="btn-action unfollow" (click)='removeFollow(f.userId)'>
+                        <span>Following</span>
+                        <span class="hover-text">Unfollow</span>
+                    </button>
+                    } @else {
+                    <button class="btn-action view-profile">
+                        View
+                    </button>
+                    <div class="user-hover-card">
+                        <app-user-details [user]="f"></app-user-details>
+                    </div>
+                    }
+                </div>
+
+            </div>
+            }
+
+            <!-- קישוט קטן לסוף הרשימה -->
+            <div class="list-footer-decoration">
+                <i class="fas fa-circle"></i>
+            </div>
+
+            } @else {
+            <!-- מצב ריק מעוצב -->
+            <div class="empty-state-full">
+                <div class="empty-icon-circle">
+                    <i class="fas fa-user-friends"></i>
+                </div>
+                <h3>No users here yet</h3>
+                <p>When you connect with people, they will appear here.</p>
+            </div>
+            }
+        </div>
+    </div>
+</div>
