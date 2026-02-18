@@ -26,7 +26,7 @@ export class LogInComponent {
   ) {}
 
   ngOnInit(): void {
-    //initialize the form
+    // Initialize the login form with required controls
     this.logInForm = new FormGroup({
       userName: new FormControl(),
       password: new FormControl(),
@@ -45,13 +45,13 @@ export class LogInComponent {
       //send to the server
       this._userService.logIn(newUser).subscribe({
         next: (res) => {
-          // Wait for settings to load before navigating to apply them immediately
+          // Wait for user settings to load before navigation to ensure immediate application
           this._userSettingService.loadUserSettings().subscribe({
             next: () => {
               this._router.navigate(['/feed']);
             },
             error: () => {
-              // Even if settings fail to load, navigate to feed
+              // Navigate to feed even if settings fail to load to prevent blocking access
               this._router.navigate(['/feed']);
             }
           });

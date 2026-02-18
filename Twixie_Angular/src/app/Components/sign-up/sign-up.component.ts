@@ -16,7 +16,7 @@ import { ConfirmDialogComponent } from '../confirm-dialog/confirm-dialog.compone
 export class SignUpComponent implements OnInit {
   signUpForm!: FormGroup;
   selectedFile: File | null = null;
-  // משתנה שיחזיק את ה- URL של התמונה לתצוגה מקדימה
+  // Variable to store the image Data URL for preview display
   imagePreviewUrl: string | ArrayBuffer | null = null;
 
   constructor(
@@ -28,7 +28,7 @@ export class SignUpComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    //initialize the form
+    // Initialize the sign-up form with required controls
     this.signUpForm = new FormGroup({
       userName: new FormControl(),
       email: new FormControl(),
@@ -43,17 +43,17 @@ export class SignUpComponent implements OnInit {
     const file = event.target.files[0] as File;
     this.selectedFile = file;
 
-    // לוגיקה ליצירת תצוגה מקדימה
+    // Logic to generate an image preview for user feedback
     if (file) {
       const reader = new FileReader();
 
-      // הפונקציה שתרוץ כשהקובץ ייקרא
+      // Callback function invoked when the file is successfully loaded
       reader.onload = (e: any) => {
-        // e.target.result הוא ה-Data URL של התמונה
+        // e.target.result contains the Data URL representation of the image
         this.imagePreviewUrl = e.target.result;
       };
 
-      // קריאת הקובץ כ-Data URL
+      // Read the file as a Data URL for preview purposes
       reader.readAsDataURL(file);
     } else {
       this.imagePreviewUrl = null;
@@ -93,7 +93,7 @@ export class SignUpComponent implements OnInit {
       formData.append('image', this.selectedFile, this.selectedFile.name);
       formData.append('verifyCode', this.signUpForm.value.verifyCode);
 
-      //send to the server
+      // Submit the registration data to the server
       this._userService.signUp(formData).subscribe({
         next: (res) => {
           this.imagePreviewUrl = null;

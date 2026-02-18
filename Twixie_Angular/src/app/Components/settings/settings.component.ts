@@ -45,7 +45,7 @@ export class SettingsComponent implements OnInit {
   }
 
   ngOnDestroy(): void {
-    // אם יש שינויים שלא נשמרו, החזר את ההגדרות המקוריות
+    // If there are unsaved changes, revert to original settings to preserve user data
     if (this.hasChanges && this.originalSettings) {
       this.settingsService.applySettings(this.originalSettings);
     }
@@ -131,10 +131,10 @@ export class SettingsComponent implements OnInit {
 
   private navigateBack(): void {
     if (this.returnUrl) {
-      // אם יש URL שנשמר - נווט אליו
+      // If a return URL was stored, navigate to that location
       this.router.navigateByUrl(this.returnUrl);
     } else {
-      // אחרת - חזור לעמוד הקודם בהיסטוריה
+      // Otherwise, navigate back to the previous page in browser history
       this.location.back();
     }
   }

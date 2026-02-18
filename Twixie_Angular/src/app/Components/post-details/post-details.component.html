@@ -7,13 +7,13 @@
     <div class="profile-section">
       <img [src]="'data:image/png;base64,' + post.poster.picture" alt="Profile" class="post-avatar" />
 
-      <!-- הפופ-אפ שנפתח -->
+      <!-- Hover card popup that appears on user interaction -->
       <div class="user-hover-card">
         <app-user-details [user]="this.post.poster"></app-user-details>
       </div>
     </div>
 
-    <!-- 2. קונטיינר לטקסט (כותרת ותאריך) -->
+    <!-- Text container for post title and date information -->
     <div class="header-text">
       <h2 class="topic-name">{{ post.topicName }}</h2>
       <p>
@@ -28,7 +28,7 @@
     <h3>{{ post.title }}</h3>
 
     <p>{{ post.content }}</p>
-    <!-- התמונה הראשית של הפוסט -->
+    <!-- Main image of the post -->
     <img [src]="'data:image/png;base64,' + post.imagePath" alt="Post content" class="post-main-image" />
   </article>
 

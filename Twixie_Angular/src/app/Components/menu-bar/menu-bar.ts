@@ -49,9 +49,9 @@ export class MenuBar implements OnInit {
     const current = this._settingsService.getCurrentSettings() ||
       this._settingsService.getDefaultSettings();
     const updated: UserSettings = { ...current, darkModeEnabled: !current.darkModeEnabled };
-    // apply locally (this also persists to localStorage inside the service)
+    // Apply settings locally (persists to localStorage automatically within the service)
     this._settingsService.applySettings(updated);
-    // update subject so subscribers see change
+    // Update the settings subject so all subscribers receive the notification
     (this._settingsService as any).settingsSubject?.next?.(updated);
   }
 

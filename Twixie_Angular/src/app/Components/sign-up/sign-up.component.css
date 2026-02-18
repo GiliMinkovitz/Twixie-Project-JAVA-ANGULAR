@@ -14,7 +14,7 @@
     --border-dark: #404040;
 }
 
-/* --- רקע חיצוני --- */
+/* --- External background section --- */
 .signup-wrapper {
     min-height: 100vh;
     width: 100%;
@@ -33,7 +33,7 @@
     background-color: var(--dark-bg);
 }
 
-/* דוגמה ברקע (עיגולים עדינים) כדי שלא יהיה "משעמם" */
+/* Background pattern (subtle dots) for visual interest */
 .bg-pattern {
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
@@ -43,14 +43,14 @@
     pointer-events: none;
 }
 
-/* --- הכרטיס המרכזי --- */
+/* --- Main card container --- */
 .auth-card {
     background-color: var(--white);
     width: 100%;
-    max-width: 450px; /* רוחב קלאסי של כרטיס הרשמה */
-    border-radius: 30px; /* פינות עגולות מאוד */
+    max-width: 450px; /* Classic sign-up card width */
+    border-radius: 30px; /* Very rounded corners */
     padding: 40px;
-    box-shadow: var(--shadow-soft); /* צל עמוק ורך */
+    box-shadow: var(--shadow-soft); /* Soft and deep shadow */
     position: relative;
     z-index: 10;
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -61,7 +61,7 @@
     box-shadow: 0 20px 40px rgba(0,0,0,0.5);
 }
 
-/* --- כותרת הכרטיס --- */
+/* --- Card header section --- */
 .card-header {
     text-align: center;
     margin-bottom: 30px;
@@ -71,7 +71,7 @@
     font-size: 1.5rem;
     font-weight: 900;
     color: var(--twixie-yellow);
-    /* קונטור שחור לטקסט הצהוב כדי שייראה כמו מותג */
+    /* Black outline for yellow text to achieve brand appearance */
     /* -webkit-text-stroke: 1px var(--twixie-black);  */
     margin: 0;
     letter-spacing: -1px;
@@ -88,7 +88,7 @@
     color: var(--text-light);
 }
 
-/* --- תמונת פרופיל (כמו שאהבת) --- */
+/* --- Profile picture section (as you preferred) --- */
 .profile-section {
     display: flex;
     flex-direction: column;
@@ -109,7 +109,7 @@
     height: 100%;
     border-radius: 50%;
     object-fit: cover;
-    border: 4px solid var(--white); /* מסגרת לבנה עבה */
+    border: 4px solid var(--white); /* Thick white border */
     box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
@@ -127,7 +127,7 @@
     color: #707070;
 }
 
-/* אייקון המצלמה */
+/* Camera icon badge */
 .camera-badge {
     position: absolute;
     bottom: 0;
@@ -164,7 +164,7 @@ input[type="file"] { display: none; }
     color: var(--text-secondary);
 }
 
-/* --- שדות הטופס (אותו עיצוב) --- */
+/* --- Form fields (same styling) --- */
 .form-grid {
     display: flex;
     flex-direction: column;
@@ -183,7 +183,7 @@ input[type="file"] { display: none; }
 input, textarea {
     width: 100%;
     padding: 14px 20px;
-    border-radius: 20px; /* עגול יותר */
+    border-radius: 20px; /* More rounded */
     border: 2px solid transparent;
     background-color: var(--input-bg);
     font-size: 1rem;
@@ -201,7 +201,7 @@ input:focus, textarea:focus {
 
 textarea { resize: none; }
 
-/* שורת קוד אימות */
+/* Verification code row */
 .verify-row {
     display: flex;
     gap: 10px;
@@ -218,7 +218,7 @@ textarea { resize: none; }
     text-decoration: underline;
 }
 
-/* --- כפתור הרשמה --- */
+/* --- Sign-up button --- */
 .btn-submit {
     margin-top: 30px;
     width: 100%;
@@ -247,7 +247,7 @@ textarea { resize: none; }
     box-shadow: none;
 }
 
-/* --- פוטר --- */
+/* --- Footer section --- */
 .footer-link {
     text-align: center;
     margin-top: 20px;
@@ -265,17 +265,17 @@ textarea { resize: none; }
 }
 .footer-link a:hover { text-decoration: underline; }
 
-/* --- אנימציית כניסה --- */
+/* --- Entry animation --- */
 @keyframes popIn {
     0% { opacity: 0; transform: scale(0.9); }
     100% { opacity: 1; transform: scale(1); }
 }
 
-/* --- התאמה למובייל --- */
+/* --- Mobile responsiveness --- */
 @media (max-width: 500px) {
     .signup-wrapper {
         padding: 0;
-        background-color: var(--white); /* במובייל מבטלים את הרקע הצהוב לטובת מראה נקי */
+        background-color: var(--white); /* Remove yellow background on mobile for clean appearance */
     }
 
     .auth-card {

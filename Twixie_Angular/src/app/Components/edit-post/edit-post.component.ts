@@ -60,7 +60,7 @@ export class EditPostComponent implements OnInit {
   }
 
   save() {
-    // אין שום שינוי
+    // Verify that there are actual changes to save
     if (!this.canSave) {
       this.messageService.showErrorMessage('No updates to save');
       return;
@@ -68,7 +68,7 @@ export class EditPostComponent implements OnInit {
 
     const formData = new FormData();
 
-    // תוכן
+    // Handle content updates if form has been modified
     if (this.form.dirty) {
       const newContent = this.form.controls.content.value;
       const oldContent = (this.post.content || '').trim();
@@ -77,7 +77,7 @@ export class EditPostComponent implements OnInit {
       }
     }
 
-    // תמונה
+    // Handle image updates if a new file was selected
     if (this.selectedFile) {
       formData.append('image', this.selectedFile, this.selectedFile.name);
     }
@@ -85,11 +85,11 @@ export class EditPostComponent implements OnInit {
     this.postService.updatePost(this.post.postId, formData).subscribe({
       next: (updatedPost) => {
         this.messageService.showSuccessMessage('Updates saved');
-        // עדכון מקומי
+        // Update local component state with returned post data
         if (updatedPost) {
           this.post = { ...this.post, ...updatedPost };
         }
-        this.post.content = this.form.controls.content.value; // תמיד נעדכן את התוכן
+        this.post.content = this.form.controls.content.value; // Always update the content field with current form value
 
         this.form.markAsPristine();
         this.selectedFile = null;

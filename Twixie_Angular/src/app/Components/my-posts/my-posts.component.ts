@@ -20,7 +20,7 @@ import { TimeAgoPipe } from '../../time-ago.pipe';
 export class MyPostsComponent implements OnInit {
   public postList!: Post[];
   private allPosts!: Post[];
-  public isLoading = true; // לעקוב אחרי מצב הטעינה
+  public isLoading = true; // Flag to track the loading state of the posts
   @HostBinding('class.dark-mode') darkMode: boolean = false;
 
   constructor(
@@ -46,11 +46,11 @@ export class MyPostsComponent implements OnInit {
       next: (res) => {
         this.postList = res;
         this.allPosts = res;
-        this.isLoading = false; // הטעינה הסתיימה
+        this.isLoading = false; // Loading completed successfully
         console.log(this.postList);
       },
       error: (err) => {
-        this.isLoading = false; // הטעינה הסתיימה גם בשגיאה
+        this.isLoading = false; // Loading completed with error
         if (err.status === 404) {
           this._messageService.showErrorMessage("You've not written posts yet");
         }
@@ -68,15 +68,15 @@ export class MyPostsComponent implements OnInit {
   }
 
   deletePost(post: Post) {
-    // פותחים דיאלוג לאישור
+    // Open confirmation dialog to verify user intent
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: { message: `Are you sure you want to delete this post?` },
     });
 
-    // מאזינים לסגירת הדיאלוג
+    // Listen for dialog closure and handle user response
     dialogRef.afterClosed().subscribe((result) => {
       if (result === true) {
-        // המשתמש אישר – מבצעים מחיקה
+        // User confirmed deletion: proceed with delete operation
         this._postService.deletePost(post.postId).subscribe({
           next: () => {
             this._messageService.showSuccessMessage(

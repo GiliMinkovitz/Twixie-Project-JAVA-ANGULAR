@@ -7,7 +7,7 @@ import UserSettings from '../Model/userSettings.model';
   providedIn: 'root',
 })
 export class UserSettingsService {
-  // BehaviorSubject לשמירת ההגדרות הנוכחיות
+  // BehaviorSubject to store the current application settings
   private settingsSubject = new BehaviorSubject<UserSettings | null>(null);
   public settings$ = this.settingsSubject.asObservable();
 

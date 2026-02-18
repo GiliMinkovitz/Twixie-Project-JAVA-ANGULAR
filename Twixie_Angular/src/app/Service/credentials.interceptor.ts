@@ -1,7 +1,7 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 
 export const credentialsInterceptor: HttpInterceptorFn = (req, next) => {
-  const token = localStorage.getItem('token'); // או מאיפה שאת שומרת את הטוקן
+  const token = localStorage.getItem('token'); // Retrieve authentication token from local storage
   const clonedRequest = req.clone({
     withCredentials: true,
     setHeaders: token ? { Authorization: `Bearer ${token}` } : {},

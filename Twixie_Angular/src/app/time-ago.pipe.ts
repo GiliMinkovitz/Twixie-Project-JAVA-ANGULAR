@@ -3,7 +3,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
   name: 'timeAgo',
-  standalone: true, // ← חשוב מאוד!
+  standalone: true, // Important: Must be marked as standalone for proper Angular module resolution.
 })
 export class TimeAgoPipe implements PipeTransform {
   transform(value: string | Date | null): string {
@@ -28,7 +28,7 @@ export class TimeAgoPipe implements PipeTransform {
     if (days < 7) return `${days} days ago`;
     if (days < 30) return `${Math.floor(days / 7)} weeks ago`;
 
-    // יותר מחודש – תאריך רגיל
+    // More than a month: Return formatted date string
     return date.toLocaleDateString('en-US', {
       month: 'short',
       day: 'numeric',

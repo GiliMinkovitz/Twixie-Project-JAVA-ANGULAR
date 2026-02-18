@@ -12,7 +12,7 @@ import { TimeAgoPipe } from '../../time-ago.pipe';
 
 interface PageResponse {
   content: Post[];
-  last: boolean; // האם זה העמוד האחרון
+  last: boolean; // Indicates if this is the final page of results
   number: number;
 }
 
@@ -24,13 +24,13 @@ interface PageResponse {
 })
 export class FeedComponent implements OnInit {
   private allPosts: Post[] = [];
-  public postList: Post[] = []; // ← מתחיל ריק, נוסיף אליו בהדרגה
+  public postList: Post[] = []; // Stores filtered posts displayed to the user; initially empty
   public categories: Topic[] = [];
   public userNames: string[] = [];
   private page = 0;
   private loading = false;
   private noMorePosts = false;
-  public isLoading = true; // לעקוב אחרי מצב הטעינה הראשוני
+  public isLoading = true; // Flag to track the initial page loading state
 
   @HostBinding('class.dark-mode') darkMode: boolean = false;
 
@@ -58,11 +58,11 @@ export class FeedComponent implements OnInit {
     this._postService.getFeedPage(this.page).subscribe({
       next: (response: PageResponse) => {
         this.allPosts = [...this.allPosts, ...response.content];
-        this.postList = [...this.postList, ...response.content]; // מוסיף לסוף
-        this.noMorePosts = response.last; // אם זה העמוד האחרון
+        this.postList = [...this.postList, ...response.content]; // Append new posts to existing list
+        this.noMorePosts = response.last; // Update flag if this is the final page
         this.page++;
         this.loading = false;
-        this.isLoading = false; // הטעינה הסתיימה
+        this.isLoading = false; // Loading completed successfully
       },
       error: (err) => {
         if (err.status === 404) {
@@ -71,12 +71,12 @@ export class FeedComponent implements OnInit {
           console.log(err);
         }
         this.loading = false;
-        this.isLoading = false; // הטעינה הסתיימה גם בשגיאה
+        this.isLoading = false; // Loading completed with error
       },
     });
   }
 
-  // גלילה אוטומטית – מופעלת כשמגיעים קרוב לסוף הדף
+  // Automatic infinite scroll: Triggers when user scrolls near the bottom of the page
   @HostListener('window:scroll')
   onScroll() {
     if (

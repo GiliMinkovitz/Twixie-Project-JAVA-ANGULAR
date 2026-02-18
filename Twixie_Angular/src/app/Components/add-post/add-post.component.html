@@ -15,7 +15,7 @@
         @if(topicsList){
         <form [formGroup]="addForm" (ngSubmit)="savePost()">
 
-            <!-- אזור הכותרת והקטגוריה -->
+            <!-- Title and category section -->
             <div class="top-section">
                 <div class="category-pill-wrapper">
                     <select #topicSelect formControlName="topicId" (change)="onTopicSelected(topicSelect.value)" class="category-select">
@@ -34,17 +34,17 @@
                        autocomplete="off"/>
             </div>
 
-            <!-- אזור העורך (AI Editor) -->
+            <!-- Editor area (AI Editor) -->
             <div class="editor-container">
                 <div class="editor-wrapper">
 
-                    <!-- שכבה אחורית: מציגה את ה-AI -->
+                    <!-- Background layer: displays AI suggestions -->
                     <div class="backdrop">
-                        <!-- הטקסט של המשתמש מוסתר כדי לתפוס מקום -->
-                        <span class="user-text-hidden">{{ addForm.get('content')?.value }}</span><!-- הצעת ה-AI --><span class="ai-suggestion">{{ aiSuggestion }}</span>
+                        <!-- User text hidden to take up space -->
+                        <span class="user-text-hidden">{{ addForm.get('content')?.value }}</span><!-- AI suggestion --><span class="ai-suggestion">{{ aiSuggestion }}</span>
                     </div>
 
-                    <!-- שכבה קדמית: הקלט האמיתי -->
+                    <!-- Foreground layer: actual user input -->
                     <textarea
                         formControlName="content"
                         (input)="onContentChange($event)"
@@ -54,7 +54,7 @@
                         rows="5"
                     ></textarea>
 
-                    <!-- אנימציית טעינה -->
+                    <!-- Loading animation -->
                     @if (isLoadingSuggestion) {
                         <div class="ai-loader">
                             <i class="fa-solid fa-circle-notch fa-spin"></i>
@@ -63,7 +63,7 @@
                     }
                 </div>
 
-                <!-- רמז לטאב -->
+                <!-- Tab hint -->
                 @if (aiSuggestion) {
                     <div class="tab-hint">
                         Press <span class="key">TAB</span> to accept
@@ -71,7 +71,7 @@
                 }
             </div>
 
-            <!-- תצוגה מקדימה לתמונה -->
+            <!-- Image preview section -->
             @if (imagePreviewUrl) {
                 <div class="media-preview">
                     <img [src]="imagePreviewUrl" alt="Selected image">
@@ -81,7 +81,7 @@
                 </div>
             }
 
-            <!-- סרגל כלים תחתון -->
+            <!-- Bottom toolbar -->
             <div class="action-bar">
                 <div class="tools-left">
                     <label for="file-input" class="tool-btn" title="Add Image">

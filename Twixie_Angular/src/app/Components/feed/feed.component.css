@@ -1,17 +1,14 @@
-/* --- משתנים גלובליים --- */
+/* Global CSS variables and theme configuration */
 :root {
-    /* הגדרות פריסה */
     --header-height: 70px;
     --sidebar-width: 300px;
 
-    /* צבעים כלליים - משתמש בגלובלי */
     --primary-color: var(--text-primary);
     --accent-color: #FFD600;
     --bg-color: var(--background-primary);
     --card-bg: var(--card-background);
     --text-color: var(--text-primary);
 
-    /* צבעי מותג TWIXIE */
     --twixie-yellow: #FFD600;
     --twixie-black: #212121;
 }
@@ -264,7 +261,7 @@ body {
     border-color: rgba(0,0,0,0.08);
 }
 
-/* --- אזור תמונה --- */
+/* --- Image area section --- */
 .card-cover {
     height: 200px;
     position: relative;
@@ -294,18 +291,18 @@ body {
     background: #fafafa;
 }
 
-/* --- התיקון הקריטי לתגית --- */
+/* --- Critical fix for tag element --- */
 .floating-badge {
     position: absolute;
     top: 15px;
     left: 15px;
     right: auto;
 
-    /* התיקון: שימוש ב-background מלא עם צבע קשיח ו-important */
+    /* Fix: Use full background with solid color and !important */
     background: #FFD600 !important;
     color: #212121 !important;
 
-    /* וידוא שאין שקיפות */
+    /* Ensure no transparency */
     opacity: 1 !important;
 
     padding: 6px 14px;
@@ -315,10 +312,10 @@ body {
     text-transform: uppercase;
     letter-spacing: 0.5px;
     box-shadow: 0 4px 10px rgba(0,0,0,0.25);
-    z-index: 100; /* זד אינדקס גבוה */
+    z-index: 100; /* High z-index for layering */
 }
 
-/* --- תוכן הכרטיס --- */
+/* --- Card content section --- */
 .card-details {
     padding: 24px;
     flex: 1;

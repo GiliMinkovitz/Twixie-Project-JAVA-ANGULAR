@@ -36,7 +36,7 @@ export class AddPostComponent implements OnInit, OnDestroy {
   private contentChanges$ = new Subject<string>();
   private destroy$ = new Subject<void>();
   private lastUserInput: string = '';
-  private lastKnownValue: string = ''; //  ערך אמיתי שנשמור
+  private lastKnownValue: string = ''; // Stores the actual known value from last confirmation
   private userSettings!: UserSettings;
 
   constructor(
@@ -114,10 +114,10 @@ export class AddPostComponent implements OnInit, OnDestroy {
           this.isLoadingSuggestion = false;
           const currentContent = this.addForm.get('content')?.value || '';
 
-          // וודא שהמשתמש לא המשיך לכתוב
+          // Verify that the user has not continued typing since the request was completed
           if (currentContent === this.lastUserInput && suggestion) {
             this.aiSuggestion = ' ' + suggestion.trim();
-            this.lastKnownValue = currentContent; //  עדכן את הערך השמור
+            this.lastKnownValue = currentContent; // Update the stored value to reflect current state
           }
         },
         error: (err) => {
@@ -136,44 +136,44 @@ export class AddPostComponent implements OnInit, OnDestroy {
     }
     const textarea = event.target as HTMLTextAreaElement;
     const currentValue = textarea.value;
-    // אם יש הצעה קיימת
+    // If an AI suggestion exists
     if (this.aiSuggestion) {
-      // הטקסט המלא המצופה = הערך השמור + ההצעה
+      // Expected full text = stored value + AI suggestion
       const expectedFullText = this.lastKnownValue + this.aiSuggestion;
-      // בדוק אם המשתמש הקליד יותר
+      // Check if the user has typed additional characters
       if (currentValue.length > this.lastKnownValue.length) {
-        // בדוק אם מה שהוא כתב תואם להצעה
+        // Verify if the typed text matches the expected suggestion pattern
         if (expectedFullText.startsWith(currentValue)) {
-          // תואם! עדכן את ההצעה
+          // Match confirmed: Update the suggestion to show remaining text
           this.aiSuggestion = expectedFullText.substring(currentValue.length);
           this.lastKnownValue = currentValue;
         } else {
-          // לא תואם - בטל
+          // No match: Cancel the suggestion
           this.aiSuggestion = '';
           this.lastKnownValue = currentValue;
         }
       } else if (currentValue.length < this.lastKnownValue.length) {
-        // מחק - בטל
+        // User deleted text: Cancel the suggestion
         this.aiSuggestion = '';
         this.lastKnownValue = currentValue;
       } else {
-        // אותו אורך אבל שונה
+        // Same length but different content: Update state
         this.lastKnownValue = currentValue;
       }
     } else {
-      // אין הצעה - פשוט עדכן
+      // No suggestion exists: Simply update state
       this.lastKnownValue = currentValue;
     }
 
-    // עדכן את הטופס
+    // Update the form control
     this.addForm.patchValue({ content: currentValue }, { emitEvent: false });
 
-    // שלח לזרם
+    // Emit change to the content stream
     this.contentChanges$.next(currentValue);
   }
 
   onContentKeyDown(event: KeyboardEvent) {
-    // Tab - קבל את ההצעה
+    // Tab key: Accept the AI suggestion
     if (event.key === 'Tab' && this.aiSuggestion) {
       event.preventDefault();
       const currentContent = this.addForm.get('content')?.value || '';
@@ -185,7 +185,7 @@ export class AddPostComponent implements OnInit, OnDestroy {
       this.contentChanges$.next(newContent);
     }
 
-    // Backspace או Delete - בטל הצעה
+    // Backspace or Delete: Cancel the AI suggestion
     if (
       (event.key === 'Backspace' || event.key === 'Delete') &&
       this.aiSuggestion

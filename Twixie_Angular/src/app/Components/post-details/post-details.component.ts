@@ -45,13 +45,13 @@ export class PostDetailsComponent implements OnInit {
       }
     });
     this.route.params.subscribe((params) => {
-      const postId = +params['id']; // המרה ל-number
+      const postId = +params['id']; // Convert route parameter string to number
       this.getPostFromServer(postId);
     });
   }
 
   getPostFromServer(postId: number) {
-    //get the current post
+    // Retrieve the specific post data from the server by ID
     this._postService.getPostById(postId).subscribe({
       next: (res) => {
         this.post = res;
@@ -72,7 +72,7 @@ export class PostDetailsComponent implements OnInit {
   }
 
   getAmountOfLikesAndDislikes() {
-    //get amount of likes for this post
+    // Retrieve the count of likes for this post from the server
     this._likesService
       .getAmountOfLikesForPost(this.post.postId, true)
       .subscribe({
@@ -83,7 +83,7 @@ export class PostDetailsComponent implements OnInit {
           console.log(err);
         },
       });
-    //get amount od dislikes for this post
+    // Retrieve the count of dislikes for this post from the server
     this._likesService
       .getAmountOfLikesForPost(this.post.postId, false)
       .subscribe({

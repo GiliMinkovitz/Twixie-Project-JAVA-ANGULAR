@@ -2,13 +2,13 @@
 
 <div class="response-container" [class.root-response]="depth === 0">
 
-  <!-- הוספתי display-flex ב-CSS כדי שהתמונה והטקסט יהיו אחד ליד השני -->
+  <!-- Added display-flex in CSS to ensure image and text are positioned side by side -->
   <div class="response-content" [style.padding-left.px]="depth * 25" [class.deleted-mode]="response.deleted">
 
-    <!-- 1. תמונת הפרופיל -->
+    <!-- User profile picture -->
     <img [src]="'data:image/png;base64,' + response.responser.picture" alt="User" class="comment-avatar">
 
-    <!-- 2. עמודת התוכן (שם + בועה) -->
+    <!-- Content column containing user name and comment bubble -->
     <div class="comment-body">
 
       <p class="user-info">
@@ -29,7 +29,7 @@
       </div>
 
     </div>
-    <!-- סוף עמודת התוכן -->
+    <!-- End of content column -->
 
   </div>
 

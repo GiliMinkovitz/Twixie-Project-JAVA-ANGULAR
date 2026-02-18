@@ -3,26 +3,26 @@
 
 @if(user){
 <div class="profile-container">
-  
+
   <div class="profile-card">
-    
-    <!-- 1. רקע עליון דקורטיבי (במקום Cover Photo) -->
+
+    <!-- Decorative top banner section (replaces cover photo) -->
     <div class="profile-banner"></div>
 
-    <!-- 2. תמונת הפרופיל (מוגדרת ב-CSS שתעלה על הרקע) -->
+    <!-- User profile picture (positioned over banner via CSS) -->
     <div class="avatar-container">
       <img [src]="'data:image/jpeg;base64,' + user.picture" alt="User Avatar" />
     </div>
 
-    <!-- 3. פרטי הטקסט -->
+    <!-- User information and biography section -->
     <div class="profile-info">
       <h1 class="user-name">{{user.userName}}</h1>
       <p class="user-bio">{{user.biography}}</p>
     </div>
 
-    <!-- 4. סרגל כפתורים / ניווט -->
+    <!-- Action buttons and navigation bar -->
     <div class="profile-stats-actions">
-      
+
       <button (click)="viewFollows(1)" class="stat-btn">
         <i class="fa-solid fa-users"></i>
         <span>Followers</span>

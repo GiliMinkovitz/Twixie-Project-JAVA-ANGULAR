@@ -20,7 +20,7 @@ export class LikesService {
       parentPostLiked: { postId: postId },
       type: type
     };
-    // מחזיר את ה-Observable
+    // Returns an Observable containing the HTTP response from the server
     return this._HttpClient.post(
       'http://localhost:8080/api/likes/addLike',
       like,

@@ -2,7 +2,7 @@
 <app-menu-bar></app-menu-bar>
 <div class="my-posts-wrapper">
 
-    <!-- כותרת וסרגל כלים עליון -->
+    <!-- Post title and toolbar section -->
     <div class="dashboard-header">
         <div class="header-text">
             <h2>My Contributions</h2>
@@ -10,20 +10,20 @@
         </div>
 
         <div class="header-actions">
-            <!-- חיפוש -->
+            <!-- Search functionality input field -->
             <div class="search-pill">
                 <i class="fas fa-search"></i>
                 <input type="text" placeholder="Search my posts..." (input)="search($event.target.value)">
             </div>
 
-            <!-- כפתור הוספה בולט -->
+            <!-- Prominent button to create a new post -->
             <a routerLink="/add-post" routerLinkActive="active-link" class="btn-add-new">
                 <i class="fas fa-plus"></i> New Post
             </a>
         </div>
     </div>
 
-    <!-- רשימת הפוסטים -->
+    <!-- Posts list grid section -->
     @if(isLoading) {
     <div class="loading-state">
         <div class="spinner"></div>
@@ -34,7 +34,7 @@
         @for(post of postList; track $index){
         <div class="manage-card">
 
-            <!-- תמונת הפוסט עם תגית נושא צפה -->
+            <!-- Post image with floating topic tag -->
             <div class="card-media">
                 @if(post.imagePath){
                 <img src="data:image/jpeg;base64,{{ post.imagePath }}" alt="Post image" />
@@ -46,7 +46,7 @@
                 <span class="topic-badge">{{post.topicName}}</span>
             </div>
 
-            <!-- תוכן הכרטיס -->
+            <!-- Card content section -->
             <div class="card-body">
                 <div class="meta-info">
                     <i class="far fa-clock"></i> {{ post.lastUpdated | timeAgo }}
@@ -55,7 +55,7 @@
                 <h3 class="card-title">{{post.title}}</h3>
             </div>
 
-            <!-- כפתורי פעולה -->
+            <!-- Action buttons for post management -->
             <div class="card-actions">
                 <button (click)="toShowDetails(post)" class="action-btn view" title="View">
                     <i class="far fa-eye"></i>
@@ -72,7 +72,7 @@
         }
     </div>
     } @else {
-    <!-- מצב ריק -->
+    <!-- Empty state display -->
     <div class="empty-dashboard">
         <div class="empty-icon">
             <i class="fas fa-pencil-ruler"></i>

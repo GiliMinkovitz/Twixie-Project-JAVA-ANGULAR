@@ -42,7 +42,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([credentialsInterceptor])),
 
-    // ← הוספה: טען הגדרות לפני אתחול האפליקציה
+    // Initializer: Load settings before application initialization
     {
       provide: APP_INITIALIZER,
       useFactory: initializeApp,

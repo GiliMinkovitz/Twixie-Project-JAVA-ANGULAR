@@ -14,7 +14,7 @@ body {
   background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
-  overflow: visible; /* חייב להיות visible כדי שהפופ-אפ יוכל לצאת מהגבולות */
+  overflow: visible; /* Must be visible so the popup can extend beyond boundaries */
   position: relative;
 }
 
@@ -22,31 +22,31 @@ body {
 .post-avatar {
   width: 40px;
   height: 40px;
-  border-radius: 50%; /* עיגול מושלם */
+  border-radius: 50%; /* Perfect circle */
   object-fit: cover;
   cursor: pointer;
   border: 1px solid #dadde1;
 }
 
-/* --- User Details Hover Card (כמו ב-Gmail) --- */
+/* --- User Details Hover Card (Similar to Gmail) --- */
 .user-hover-card {
-  visibility: hidden; /* מוסתר כברירת מחדל */
+  visibility: hidden; /* Hidden by default */
   opacity: 0;
   position: absolute;
-  top: 100%; /* מתחיל בדיוק מתחת לתמונה */
+  top: 100%; /* Positioned directly below the image */
   left: 0;
   background-color: #fff;
-  min-width: 280px; /* רוחב מינימלי לכרטיס המידע */
+  min-width: 280px; /* Minimum width for info card */
   padding: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* צל חזק יותר לפופ-אפ */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Stronger shadow for popup */
   border-radius: 8px;
   border: 1px solid #ddd;
-  z-index: 1000; /* שיהיה מעל הכל */
+  z-index: 1000; /* Must be above all other elements */
   transition: opacity 0.2s ease-in-out, visibility 0.2s;
-  margin-top: 10px; /* רווח קטן מהתמונה */
+  margin-top: 10px; /* Small spacing from the image */
 }
 
-/* המשולש הקטן מעל הכרטיס (אופציונלי - ליופי) */
+/* Small triangle above the card (optional - for aesthetics) */
 .user-hover-card::before {
   content: "";
   position: absolute;
@@ -60,7 +60,7 @@ body {
   border-top: 1px solid #ddd;
 }
 
-/* הצגת הפופ-אפ בעת מעבר עכבר */
+/* Display popup on hover */
 .profile-section:hover .user-hover-card {
   visibility: visible;
   opacity: 1;
@@ -69,50 +69,50 @@ body {
 /* --- Header Layout --- */
 .post-header {
   display: flex;
-  align-items: flex-start; /* שינוי חשוב: מיישר את התמונה לחלק העליון במקרה שהכותרת גולשת לשתי שורות */
-  padding: 16px; /* רווח פנימי קצת יותר גדול */
+  align-items: flex-start; /* Important: Align image to top in case title wraps to two lines */
+  padding: 16px; /* Slightly larger padding */
   position: relative;
 }
 
 /* --- Profile Picture Section --- */
 .profile-section {
   position: relative;
-  margin-right: 14px; /* טיפה יותר רווח בין התמונה לטקסט */
-  margin-top: 4px; /* איזון מול הכותרת הגדולה */
+  margin-right: 14px; /* Slightly more space between image and text */
+  margin-top: 4px; /* Balance against the large heading */
 }
 
 /* --- Header Text Wrapper --- */
 .header-text {
   flex: 1;
   display: flex;
-  flex-direction: column; /* מוודא שהכותרת והפרטים אחד מתחת לשני */
+  flex-direction: column; /* Ensures title and details are stacked vertically */
   justify-content: center;
 }
 
-/* --- הכותרת הדומיננטית --- */
+/* --- Main Heading --- */
 .topic-name {
-  margin: 0 0 6px 0; /* הוספתי רווח תחתון כדי להפריד מהשם */
-  font-size: 22px; /* הגדלה משמעותית (היה 16px) */
-  font-weight: 700; /* מודגש יותר */
+  margin: 0 0 6px 0; /* Added bottom margin to separate from name */
+  font-size: 22px; /* Significant increase (was 16px) */
+  font-weight: 700; /* More bold */
   color: #050505;
   line-height: 1.2;
-  letter-spacing: -0.5px; /* צמצום רווחים עדין למראה כותרתי מודרני */
+  letter-spacing: -0.5px; /* Subtle letter spacing reduction for modern heading appearance */
 }
 
-/* --- שורת המידע (שם ותאריך) --- */
+/* --- Information Row (Name and Date) --- */
 .header-text p {
   margin: 0;
   font-size: 13px;
-  color: #65676b; /* אפור שקט יותר */
+  color: #65676b; /* Quieter gray */
   line-height: 1.4;
   display: flex;
   align-items: center;
 }
 
-/* הדגשת שם המפרסם בתוך השורה האפורה */
+/* Author Name Emphasis */
 .author-name {
   font-weight: 600;
-  color: #1c1e21; /* שם המשתמש נשאר כהה וקריא */
+  color: #1c1e21; /* Username remains dark and readable */
   cursor: pointer;
   margin-right: 4px;
 }
@@ -121,7 +121,7 @@ body {
   text-decoration: underline;
 }
 
-/* עיצוב לתאריך */
+/* Date Styling */
 .post-date {
   color: #65676b;
   font-weight: 400;
@@ -143,12 +143,12 @@ body {
   line-height: 1.5;
 }
 
-/* תמונת הפוסט הראשית */
+/* Main Post Image */
 .post-main-image {
   display: block;
   width: 100%;
   height: auto;
-  border-radius: 4px; /* רק פינות מעוגלות, לא עיגול */
+  border-radius: 4px; /* Only rounded corners, not a circle */
   border: 1px solid #e1e3e8;
   object-fit: cover;
 }

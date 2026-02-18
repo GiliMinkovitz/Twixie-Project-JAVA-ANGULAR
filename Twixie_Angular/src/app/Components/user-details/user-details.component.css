@@ -1,17 +1,17 @@
-/* הגדרות כלליות לקומפוננטה */
+/* General component styling */
 :host {
   display: block;
-  text-align: center; /* מרכוז התוכן בכרטיס */
+  text-align: center; /* Centers content within the card */
   font-family: 'Poppins', sans-serif;
   color: #1c1e21;
 }
 
-/* הסתרת הכותרת "Profile" */
+/* Hide the Profile heading */
 h2 {
   display: none;
 }
 
-/* עיצוב התמונה */
+/* Image styling and positioning */
 img {
   width: 80px !important;
   height: 80px !important;
@@ -24,7 +24,7 @@ img {
   background-color: #fff;
 }
 
-/* עיצוב הטקסטים */
+/* Text element styling and formatting */
 div {
   margin-bottom: 6px;
 }
@@ -41,7 +41,7 @@ h3 {
   max-width: 100%;
 }
 
-/* הפיכת הביוגרפיה לטקסט קטן ואפור */
+/* Biography text: smaller and muted color */
 div:nth-of-type(2) h3 {
   font-size: 13px;
   color: #65676b;
@@ -49,7 +49,7 @@ div:nth-of-type(2) h3 {
   white-space: normal;
 }
 
-/* עיצוב הכפתורים */
+/* Button styling and interactions */
 button {
   width: 100%;
   padding: 8px 0;
@@ -62,23 +62,23 @@ button {
   transition: background-color 0.2s;
 }
 
-/* --- השינוי לצבעי המותג (זהב) --- */
+/* Brand color scheme adjustment (gold) */
 
-/* כפתור "Follow" - ברירת מחדל */
+/* Follow button default state */
 button:not(:hover) {
-    background-color: #f59e0b; /* צבע זהב/ענבר במקום כחול */
+    background-color: #f59e0b; /* Gold/amber color instead of blue */
     color: white;
 }
 
-/* כפתור בהובר (כשעוברים עם העכבר) */
+/* Button hover state (darker gold) */
 button:hover {
-  background-color: #d97706; /* גוון זהב כהה/כתמתם יותר */
+  background-color: #d97706; /* Darker gold tone */
 }
 
 /*
-   הערה: אם יש לך כפתור Unfollow שאתה רוצה שיהיה אפור,
-   תוסיף לו ב-HTML את הקלאס class="unfollow-btn"
-   ותוסיף את ה-CSS הזה:
+   Note: If you have an Unfollow button that you want to be gray,
+   add the class="unfollow-btn" to the button in HTML
+   and add this CSS styling:
 */
 button.unfollow-btn {
   background-color: #e4e6eb !important;
