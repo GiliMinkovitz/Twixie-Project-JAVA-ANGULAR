@@ -1,6 +1,6 @@
-# TwixieAngular
+# Twixie Client
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.8.
+Angular frontend for Twixie. Generated with [Angular CLI](https://github.com/angular/angular-cli) (Angular 20).
 
 ## Development server
 
@@ -8,9 +8,11 @@ To start a local development server, run:
 
 ```bash
 ng serve
+# or: ng serve -o   (opens browser automatically)
+# or: npm start
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Once the server is running, open your browser at `http://localhost:4200/`. The application will automatically reload when you modify source files.
 
 ## Code scaffolding
 
