@@ -4,7 +4,7 @@ Twixie is a full-stack application with an Angular frontend and a Spring Boot ba
 
 ## Project Structure
 
-- `Twixie-client/` – Angular frontend app (`twixie-angular`)
+- `Twixie-client/` – Angular frontend app 
   - `src/` – Application source code
   - `package.json` – Dependencies and npm scripts
   - `README.md` – Angular-specific CLI usage and commands
